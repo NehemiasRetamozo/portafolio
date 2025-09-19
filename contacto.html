@@ -1,147 +1,147 @@
-<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contacto — Blue Origin Replica</title>
+  <!DOCTYPE html>
+  <html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contacto — Blue Origin Replica</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="assets/img/logo.png" type="image/png" />
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/logo.png" type="image/png" />
 
-  <!-- Font Awesome (CSS estable) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Font Awesome (CSS estable) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <link rel="preconnect" href="https://d1o72l87sylvqg.cloudfront.net" crossorigin>
+    <link rel="preconnect" href="https://d1o72l87sylvqg.cloudfront.net" crossorigin>
 
-  <style>
-    :root{
-      --blue:#0033DD; --blue-dark:#062dc7; --white:#fff;
-      --foot-left:#1b1b1b; --foot-right:#3b3b3b; --line:#2b2b2b;
-      --purple:#482c91; --purple-2:#5a33b8; --ink:#16111f; --muted:#6b6b6b;
-      --field:#f8f8fb; --stroke:#e8e8f2;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
+    <style>
+      :root{
+        --blue:#0033DD; --blue-dark:#062dc7; --white:#fff;
+        --foot-left:#1b1b1b; --foot-right:#3b3b3b; --line:#2b2b2b;
+        --purple:#482c91; --purple-2:#5a33b8; --ink:#16111f; --muted:#6b6b6b;
+        --field:#f8f8fb; --stroke:#e8e8f2;
+      }
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      html,body{height:100%}
+      body{background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
 
-    /* HEADER */
-    .topbar{
-      position:sticky;top:0;z-index:1000;background:var(--blue);
-      height:96px;display:flex;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)
-    }
-    /* A los cantos con 30px (igual que PARCIAL) */
-    .nav{
-      width:100%;               /* ← sin max-width */
-      margin:0;                 /* ← sin centrado */
-      padding:0 30px;           /* ← separación lateral de 30px */
-      height:96px;
-      display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px
-    }
-    .brand img{height:52px;width:auto;display:block}
-    .nav-center{justify-self:center;display:flex;gap:54px;text-transform:uppercase;letter-spacing:.2em;font-weight:800;font-size:13px}
-    .nav-center a{color:rgba(255,255,255,.95);text-decoration:none}
-    .nav-center a:hover{color:#fff}
-    .nav-right{justify-self:end;display:flex;gap:18px;align-items:center}
-    /* Se ha eliminado el texto "Translate" y se ha aumentado el tamaño del ícono */
-    .translate-button{background-color:#0033DD;border:none;border-radius:5px;padding:10px 20px;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;gap:20px;}
-    .translate-button svg{ width:30px; /* Aumentar tamaño del ícono */ height:30px; /* Aumentar tamaño del ícono */fill:white;}
-    .cta{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:8px;background:#fff;color:#0033dd;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:12px;border:1px solid rgba(0,0,0,.06);text-decoration:none}
-    .burger{width:42px;height:42px;background:transparent;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;border:none}
-    .burger i,.burger::before{content:"";display:block;width:35px;height:5px;background:#fff;border-radius:2px}
-    .burger::after{display:none}
-    @media (max-width:1200px){.nav-center{display:none}}
+      /* HEADER */
+      .topbar{
+        position:sticky;top:0;z-index:1000;background:var(--blue);
+        height:96px;display:flex;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)
+      }
+      /* A los cantos con 30px (igual que PARCIAL) */
+      .nav{
+        width:100%;               /* ← sin max-width */
+        margin:0;                 /* ← sin centrado */
+        padding:0 30px;           /* ← separación lateral de 30px */
+        height:96px;
+        display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px
+      }
+      .brand img{height:52px;width:auto;display:block}
+      .nav-center{justify-self:center;display:flex;gap:54px;text-transform:uppercase;letter-spacing:.2em;font-weight:800;font-size:13px}
+      .nav-center a{color:rgba(255,255,255,.95);text-decoration:none}
+      .nav-center a:hover{color:#fff}
+      .nav-right{justify-self:end;display:flex;gap:18px;align-items:center}
+      /* Se ha eliminado el texto "Translate" y se ha aumentado el tamaño del ícono */
+      .translate-button{background-color:#0033DD;border:none;border-radius:5px;padding:10px 20px;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;gap:20px;}
+      .translate-button svg{ width:30px; /* Aumentar tamaño del ícono */ height:30px; /* Aumentar tamaño del ícono */fill:white;}
+      .cta{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:8px;background:#fff;color:#0033dd;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:12px;border:1px solid rgba(0,0,0,.06);text-decoration:none}
+      .burger{width:42px;height:42px;background:transparent;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;border:none}
+      .burger i,.burger::before{content:"";display:block;width:35px;height:5px;background:#fff;border-radius:2px}
+      .burger::after{display:none}
+      @media (max-width:1200px){.nav-center{display:none}}
 
-    /* HERO contacto */
-    .contact-hero{background:#fff;color:#2b2440;padding:46px 20px 18px;border-bottom:1px solid #efeff6}
-    .container{max-width:1200px;margin:0 auto;padding:0 22px}
-    .kicker{font-size:14px;letter-spacing:.24em;text-transform:uppercase;font-weight:800;color:#9a8bd6}
-    .title-wrap{margin-top:8px;margin-bottom:12px}
-    h1.title{font-weight:900;letter-spacing:.01em;line-height:1.05;font-size:clamp(38px,5.6vw,64px);color:#3c2a86;text-transform:uppercase}
-    .title-underline{width:56px;height:4px;background:#e6ddff;border-radius:6px;margin-top:14px}
+      /* HERO contacto */
+      .contact-hero{background:#fff;color:#2b2440;padding:46px 20px 18px;border-bottom:1px solid #efeff6}
+      .container{max-width:1200px;margin:0 auto;padding:0 22px}
+      .kicker{font-size:14px;letter-spacing:.24em;text-transform:uppercase;font-weight:800;color:#9a8bd6}
+      .title-wrap{margin-top:8px;margin-bottom:12px}
+      h1.title{font-weight:900;letter-spacing:.01em;line-height:1.05;font-size:clamp(38px,5.6vw,64px);color:#3c2a86;text-transform:uppercase}
+      .title-underline{width:56px;height:4px;background:#e6ddff;border-radius:6px;margin-top:14px}
 
-    /* Contacto */
-    .contact{background:#fff;color:#1f1636;padding:26px 0 64px}
-    .grid{display:grid;grid-template-columns:1.2fr .9fr;gap:48px}
-    @media (max-width:980px){.grid{grid-template-columns:1fr;gap:28px}}
-    .form-card{background:#fff;border:1px solid var(--stroke);border-radius:12px;padding:22px 22px 18px;box-shadow:0 8px 22px rgba(23,16,44,.04)}
-    .section-h{font-size:22px;font-weight:900;letter-spacing:.02em;margin-bottom:18px;color:#362470;text-transform:uppercase}
-    .field{display:block;width:100%;height:50px;border:1px solid #e7e7f1;background:var(--field);border-radius:10px;padding:0 14px;font-size:15px;color:#1e1b2c;outline:none}
-    .field:focus{border-color:#c9bdf6;box-shadow:0 0 0 3px rgba(125,87,255,.18)}
-    .field + .field{margin-top:14px}
-    .area{min-height:160px;padding-top:12px;resize:vertical}
-    .send{margin-top:18px;display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 18px;border-radius:10px;border:none;cursor:pointer;background:linear-gradient(180deg,var(--purple-2),#4d2ca9);color:#fff;font-weight:900;letter-spacing:.02em}
-    .send:hover{filter:brightness(1.05)}
-    .info{padding-top:6px}
-    .info p{color:#5a5771;line-height:1.7}
-    .row{display:flex;align-items:center;gap:12px;margin:14px 0}
-    .ic{width:40px;height:40px;border-radius:12px;border:1px solid #e7e7f1;background:#fbfbff;display:grid;place-items:center;color:#5b2ec7}
-    .phone{font-size:28px;font-weight:900;color:#2d2157;margin-left:4px}
-    .sub{color:#6a6783;font-size:14px}
-    .socials{margin-top:14px;display:flex;gap:12px}
-    .s-btn{width:42px;height:42px;border:1px solid #e7e7f1;border-radius:10px;display:grid;place-items:center;background:#fff;color:#5a2dbf;text-decoration:none}
-    .s-btn:hover{background:#f5f2ff}
+      /* Contacto */
+      .contact{background:#fff;color:#1f1636;padding:26px 0 64px}
+      .grid{display:grid;grid-template-columns:1.2fr .9fr;gap:48px}
+      @media (max-width:980px){.grid{grid-template-columns:1fr;gap:28px}}
+      .form-card{background:#fff;border:1px solid var(--stroke);border-radius:12px;padding:22px 22px 18px;box-shadow:0 8px 22px rgba(23,16,44,.04)}
+      .section-h{font-size:22px;font-weight:900;letter-spacing:.02em;margin-bottom:18px;color:#362470;text-transform:uppercase}
+      .field{display:block;width:100%;height:50px;border:1px solid #e7e7f1;background:var(--field);border-radius:10px;padding:0 14px;font-size:15px;color:#1e1b2c;outline:none}
+      .field:focus{border-color:#c9bdf6;box-shadow:0 0 0 3px rgba(125,87,255,.18)}
+      .field + .field{margin-top:14px}
+      .area{min-height:160px;padding-top:12px;resize:vertical}
+      .send{margin-top:18px;display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 18px;border-radius:10px;border:none;cursor:pointer;background:linear-gradient(180deg,var(--purple-2),#4d2ca9);color:#fff;font-weight:900;letter-spacing:.02em}
+      .send:hover{filter:brightness(1.05)}
+      .info{padding-top:6px}
+      .info p{color:#5a5771;line-height:1.7}
+      .row{display:flex;align-items:center;gap:12px;margin:14px 0}
+      .ic{width:40px;height:40px;border-radius:12px;border:1px solid #e7e7f1;background:#fbfbff;display:grid;place-items:center;color:#5b2ec7}
+      .phone{font-size:28px;font-weight:900;color:#2d2157;margin-left:4px}
+      .sub{color:#6a6783;font-size:14px}
+      .socials{margin-top:14px;display:flex;gap:12px}
+      .s-btn{width:42px;height:42px;border:1px solid #e7e7f1;border-radius:10px;display:grid;place-items:center;background:#fff;color:#5a2dbf;text-decoration:none}
+      .s-btn:hover{background:#f5f2ff}
 
-    /* SOCIAL BAR */
-    .social-bar{background:var(--blue);padding:18px 20px;display:flex;justify-content:center;align-items:center;gap:22px}
-    .social-bar span{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800}
-    .icons{display:flex;gap:18px;align-items:center}
-    .icons a{
-      width:34px;height:34px;border:2px solid #fff;border-radius:8px;
-      display:inline-flex;align-items:center;justify-content:center;
-      color:#fff;text-decoration:none;font-size:18px; line-height:1;
-    }
+      /* SOCIAL BAR */
+      .social-bar{background:var(--blue);padding:18px 20px;display:flex;justify-content:center;align-items:center;gap:22px}
+      .social-bar span{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800}
+      .icons{display:flex;gap:18px;align-items:center}
+      .icons a{
+        width:34px;height:34px;border:2px solid #fff;border-radius:8px;
+        display:inline-flex;align-items:center;justify-content:center;
+        color:#fff;text-decoration:none;font-size:18px; line-height:1;
+      }
 
-    /* OFF-CANVAS */
-    .oc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:saturate(130%) blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;}
-    .oc-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,88vw);background:#2e2e2e;color:#fff;transform:translateX(100%);transition:transform .28s ease;z-index:1300;display:flex;flex-direction:column;box-shadow:-8px 0 22px rgba(0,0,0,.45);}
-    .oc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
-    .oc-feather{height:28px}
-    .oc-close{width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center;}
-    .oc-content{padding:10px 20px 24px;overflow:auto}
-    .oc-link{display:block;padding:12px 2px;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08);}
-    .oc-link:hover{background:#3a3a3a}
-    .oc-footer{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:10px;flex-wrap:wrap}
-    .oc-footer a{color:#fff;text-decoration:none;font-size:13px;opacity:.9}
-    .oc-footer a:hover{opacity:1;text-decoration:underline}
-    .oc-open .oc-overlay{opacity:1;pointer-events:auto}
-    .oc-open .oc-panel{transform:translateX(0)}
+      /* OFF-CANVAS */
+      .oc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:saturate(130%) blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;}
+      .oc-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,88vw);background:#2e2e2e;color:#fff;transform:translateX(100%);transition:transform .28s ease;z-index:1300;display:flex;flex-direction:column;box-shadow:-8px 0 22px rgba(0,0,0,.45);}
+      .oc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+      .oc-feather{height:28px}
+      .oc-close{width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center;}
+      .oc-content{padding:10px 20px 24px;overflow:auto}
+      .oc-link{display:block;padding:12px 2px;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08);}
+      .oc-link:hover{background:#3a3a3a}
+      .oc-footer{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:10px;flex-wrap:wrap}
+      .oc-footer a{color:#fff;text-decoration:none;font-size:13px;opacity:.9}
+      .oc-footer a:hover{opacity:1;text-decoration:underline}
+      .oc-open .oc-overlay{opacity:1;pointer-events:auto}
+      .oc-open .oc-panel{transform:translateX(0)}
 
-    /* FOOTER */
-    footer{display:grid;grid-template-columns:45% 22% 33%;height:635px;background:linear-gradient(90deg,var(--foot-left)0 67.6%,var(--foot-right)67.6% 100%);color:#fff;border-top:1px solid #232323}
-    .foot-left{padding:80px 40px 40px 120px;display:flex;flex-direction:column;justify-content:center}
-    .feather{width:340px;max-width:90%;margin:0 0 28px 0;filter:brightness(1.05)}
-    .legal{margin-top:8px;font-size:14px;color:#d9d9d9}
-    .legal-links{margin-top:18px;display:flex;gap:24px}
-    .legal-links a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px;font-size:14px}
-    .legal-links a:hover{border-bottom-color:#fff}
-    .foot-center{position:relative;padding:60px 40px 60px 0}
-    .foot-center::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:1px;background:var(--line)}
-    .menu{padding-left:40px;display:flex;flex-direction:column;gap:26px}
-    .menu a{color:#fff;text-decoration:none;font-size:16px;letter-spacing:.04em}
-    .menu a:hover{text-decoration:underline}
-    .select-wrap{margin-top:6px;width:330px;position:relative}
-    .select{width:100%;appearance:none;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;padding:12px 42px 12px 16px;font-size:14px}
-    .select-wrap::after{content:"▾";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:16px;color:#fff}
-    .foot-right{background:var(--foot-right);padding:60px 56px;display:flex;flex-direction:column;gap:14px}
-    .foot-right h3{font-size:22px;font-weight:800;margin-bottom:6px}
-    .foot-right p{color:#e1e1e1;font-size:15px;line-height:1.6}
-    .req{color:#ccc;font-size:13px;margin:2px 0 6px}
-    .label{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin:10px 0 6px}
-    .input{width:min(740px,100%);height:46px;background:transparent;border:2px solid #fff;border-radius:4px;color:#fff;padding:0 10px;font-size:15px}
-    .check{display:flex;align-items:flex-start;gap:12px;margin-top:12px}
-    .box{width:18px;height:18px;border:2px solid #fff;background:transparent;display:inline-block;flex-shrink:0}
-    .check p{color:#e1e1e1;font-size:14px;line-height:1.6}
-    .submit{align-self:flex-start;margin-top:14px;background:transparent;color:#fff;border:2px solid #fff;border-radius:4px;padding:8px 14px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:13px;cursor:pointer}
-    .submit:hover{background:#fff;color:#000}
-    @media(max-width:1100px){
-      footer{grid-template-columns:1fr;height:auto}
-      .foot-center::before{display:none}
-      .menu{padding-left:0}
-      .foot-left,.foot-center,.foot-right{padding:28px 22px}
-      .feather{width:220px}
-    }
+      /* FOOTER */
+      footer{display:grid;grid-template-columns:45% 22% 33%;height:635px;background:linear-gradient(90deg,var(--foot-left)0 67.6%,var(--foot-right)67.6% 100%);color:#fff;border-top:1px solid #232323}
+      .foot-left{padding:80px 40px 40px 120px;display:flex;flex-direction:column;justify-content:center}
+      .feather{width:340px;max-width:90%;margin:0 0 28px 0;filter:brightness(1.05)}
+      .legal{margin-top:8px;font-size:14px;color:#d9d9d9}
+      .legal-links{margin-top:18px;display:flex;gap:24px}
+      .legal-links a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px;font-size:14px}
+      .legal-links a:hover{border-bottom-color:#fff}
+      .foot-center{position:relative;padding:60px 40px 60px 0}
+      .foot-center::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:1px;background:var(--line)}
+      .menu{padding-left:40px;display:flex;flex-direction:column;gap:26px}
+      .menu a{color:#fff;text-decoration:none;font-size:16px;letter-spacing:.04em}
+      .menu a:hover{text-decoration:underline}
+      .select-wrap{margin-top:6px;width:330px;position:relative}
+      .select{width:100%;appearance:none;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;padding:12px 42px 12px 16px;font-size:14px}
+      .select-wrap::after{content:"▾";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:16px;color:#fff}
+      .foot-right{background:var(--foot-right);padding:60px 56px;display:flex;flex-direction:column;gap:14px}
+      .foot-right h3{font-size:22px;font-weight:800;margin-bottom:6px}
+      .foot-right p{color:#e1e1e1;font-size:15px;line-height:1.6}
+      .req{color:#ccc;font-size:13px;margin:2px 0 6px}
+      .label{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin:10px 0 6px}
+      .input{width:min(740px,100%);height:46px;background:transparent;border:2px solid #fff;border-radius:4px;color:#fff;padding:0 10px;font-size:15px}
+      .check{display:flex;align-items:flex-start;gap:12px;margin-top:12px}
+      .box{width:18px;height:18px;border:2px solid #fff;background:transparent;display:inline-block;flex-shrink:0}
+      .check p{color:#e1e1e1;font-size:14px;line-height:1.6}
+      .submit{align-self:flex-start;margin-top:14px;background:transparent;color:#fff;border:2px solid #fff;border-radius:4px;padding:8px 14px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:13px;cursor:pointer}
+      .submit:hover{background:#fff;color:#000}
+      @media(max-width:1100px){
+        footer{grid-template-columns:1fr;height:auto}
+        .foot-center::before{display:none}
+        .menu{padding-left:0}
+        .foot-left,.foot-center,.foot-right{padding:28px 22px}
+        .feather{width:220px}
+      }
 
-    /* LOGIN MODAL */
+      /* ===== LOGIN MODAL ===== */
     .login-overlay{position:fixed; inset:0; z-index:1400;background:rgba(0,0,0,.6); backdrop-filter:blur(2px);opacity:0; pointer-events:none; transition:opacity .2s ease;display:grid; place-items:center; padding:24px;}
     .login-card{width:min(520px,96vw);background:rgba(21,22,28,.98);border:1px solid rgba(255,255,255,.08);border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.55);padding:28px 22px 22px;transform:translateY(10px) scale(.98);opacity:0; transition:transform .2s ease, opacity .2s ease;color:#e8eaf0;}
     .login-open .login-overlay{opacity:1; pointer-events:auto}
@@ -158,287 +158,273 @@
     .login-btn{margin-top:12px; width:100%; height:46px; border-radius:10px;border:none; background:#1677ff; color:#fff; font-weight:900; letter-spacing:.04em; cursor:pointer;}
     .login-btn:hover{filter:brightness(1.05)}
     .login-or{display:block; text-align:center; opacity:.65; margin:12px 0 6px}
-    .login-google{width:100%; height:46px; border-radius:10px;border:1px solid #d2d6dd; background:#fff; color:#1f2937;display:flex; align-items:center; justify-content:center; gap:10px; cursor:pointer; font-weight:800;}
+    .login-google{width:100%; height:46px; border-radius:10px; border:1px solid #d2d6dd; background:#fff; color:#1f2937;display:flex; align-items:center; justify-content:center; gap:10px; cursor:pointer; font-weight:800;}
     .login-google:hover{ background:#f8fafc; border-color:#cfd6e6 }
-    .login-google:focus{ outline:none; box-shadow:0 0 0 3px rgba(66,133,244,.25) }
     .login-google i{ font-size:18px; color:#4285F4 }
     .login-note{font-size:12px; text-align:center; margin-top:10px; color:#9aa3b2}
     .login-note a{color:#9bb7ff; text-decoration:none}
     .login-note a:hover{text-decoration:underline}
 
-    /* util */
-    .visuallyHidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
-  </style>
-</head>
-<body>
+      /* util */
+      .visuallyHidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+    </style>
+  </head>
+  <body>
 
-  <!-- HEADER -->
-  <header class="topbar">
-    <nav class="nav">
-      <a class="brand" href="index.html">
-        <img src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-blue-origin-tagline-optimized.svg" alt="BLUE ORIGIN">
-      </a>
-      <div class="nav-center">
-        <a href="index.html">Inicio</a>
-        <a href="perfil.html">Perfil</a>
-        <a href="parcial.html">Parcial</a>
-        <a href="portafolio.html">Portafolio</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
-      <div class="nav-right">
-        <button type="button" class="translate-button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-labelledby="translateIcon">
-            <title id="translateIcon">Translate</title>
-            <path d="M3 5h4m0 0h4M7 5V3m-4 9c5.4-1.5 6.6-7 6.6-7m-4 3c1 1.5 2.7 3.2 5.4 4m-8 3v2c0 1.1.9 2 2 2h4m0 0-3-2v4l3-2ZM21 9V7a2 2 0 0 0-2-2h-4m0 0 3 2V3l-3 2Zm6 16-4-9-4 9m.9-2H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </button>
-        <a class="cta" href="#" id="open-login">Iniciar sesión</a>
-        <button class="burger" id="oc-trigger" aria-haspopup="dialog" aria-controls="offcanvas" aria-expanded="false"><span class="visuallyHidden">Main menu</span><i></i></button>
-      </div>
-    </nav>
-  </header>
-
-  <!-- CABECERA CLARA -->
-  <section class="contact-hero">
-    <div class="container">
-      <div class="kicker">Contáctenos</div>
-      <div class="title-wrap">
-        <h1 class="title">Ponte en contacto</h1>
-        <div class="title-underline" aria-hidden="true"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section class="contact" aria-label="Formulario de contacto">
-    <div class="container grid">
-      <div class="form-card">
-        <h3 class="section-h">Mándanos un mensaje</h3>
-        <form id="contact-form">
-          <input class="field" type="text" name="name" placeholder="Tu nombre *" required>
-          <input class="field" type="email" name="email" placeholder="Tu correo electrónico *" required>
-          <textarea class="field area" name="message" placeholder="Mensaje"></textarea>
-          <button class="send" type="submit">
-            <i class="fa-solid fa-paper-plane"></i> Enviar mensaje
+    <!-- HEADER -->
+    <header class="topbar">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <img src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-blue-origin-tagline-optimized.svg" alt="BLUE ORIGIN">
+        </a>
+        <div class="nav-center">
+          <a href="index.html">Inicio</a>
+          <a href="perfil.html">Perfil</a>
+          <a href="parcial.html">Parcial</a>
+          <a href="portafolio.html">Portafolio</a>
+          <a href="contacto.html">Contacto</a>
+        </div>
+        <div class="nav-right">
+          <button type="button" class="translate-button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-labelledby="translateIcon">
+              <title id="translateIcon">Translate</title>
+              <path d="M3 5h4m0 0h4M7 5V3m-4 9c5.4-1.5 6.6-7 6.6-7m-4 3c1 1.5 2.7 3.2 5.4 4m-8 3v2c0 1.1.9 2 2 2h4m0 0-3-2v4l3-2ZM21 9V7a2 2 0 0 0-2-2h-4m0 0 3 2V3l-3 2Zm6 16-4-9-4 9m.9-2H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
           </button>
-        </form>
+          <a class="cta" href="#" id="open-login">Iniciar sesión</a>
+          <button class="burger" id="oc-trigger" aria-haspopup="dialog" aria-controls="offcanvas" aria-expanded="false"><span class="visuallyHidden">Main menu</span><i></i></button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- CABECERA CLARA -->
+    <section class="contact-hero">
+      <div class="container">
+        <div class="kicker">Contáctenos</div>
+        <div class="title-wrap">
+          <h1 class="title">Ponte en contacto</h1>
+          <div class="title-underline" aria-hidden="true"></div>
+        </div>
       </div>
+    </section>
 
-      <aside class="info">
-        <h3 class="section-h">Datos de contacto</h3>
-        <p>Si tienes alguna pregunta o te gustaría colaborar, no dudes en ponerte en contacto conmigo.</p>
-
-        <div class="row">
-          <span class="ic"><i class="fa-solid fa-phone"></i></span>
-          <div><div class="phone"><a href="tel:+51910064458" style="color:inherit;text-decoration:none">+51 910 064 458</a></div></div>
+    <!-- CONTACTO -->
+    <section class="contact" aria-label="Formulario de contacto">
+      <div class="container grid">
+        <div class="form-card">
+          <h3 class="section-h">Mándanos un mensaje</h3>
+          <form id="contact-form">
+            <input class="field" type="text" name="name" placeholder="Tu nombre *" required>
+            <input class="field" type="email" name="email" placeholder="Tu correo electrónico *" required>
+            <textarea class="field area" name="message" placeholder="Mensaje"></textarea>
+            <button class="send" type="submit">
+              <i class="fa-solid fa-paper-plane"></i> Enviar mensaje
+            </button>
+          </form>
         </div>
 
-        <div class="row">
-          <span class="ic"><i class="fa-solid fa-location-dot"></i></span>
-          <div><div>Tambo, Huancayo, Junín</div><div class="sub">Perú</div></div>
-        </div>
+        <aside class="info">
+          <h3 class="section-h">Datos de contacto</h3>
+          <p>Si tienes alguna pregunta o te gustaría colaborar, no dudes en ponerte en contacto conmigo.</p>
 
-        <div class="row">
-          <span class="ic"><i class="fa-solid fa-envelope"></i></span>
-          <div><a href="mailto:josuenehemiasatucusi@gmail.com">josuenehemiasatucusi@gmail.com</a></div>
-        </div>
+          <div class="row">
+            <span class="ic"><i class="fa-solid fa-phone"></i></span>
+            <div><div class="phone"><a href="tel:+51910064458" style="color:inherit;text-decoration:none">+51 910 064 458</a></div></div>
+          </div>
 
-        <h3 class="section-h" style="margin-top:18px">Redes sociales</h3>
-        <div class="socials">
-          <a class="s-btn" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a class="s-btn" href="#" aria-label="Twitter / X"><i class="fa-brands fa-twitter"></i></a>
-          <a class="s-btn" href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-          <a class="s-btn" href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        </div>
-      </aside>
-    </div>
-  </section>
+          <div class="row">
+            <span class="ic"><i class="fa-solid fa-location-dot"></i></span>
+            <div><div>Tambo, Huancayo, Junín</div><div class="sub">Perú</div></div>
+          </div>
 
-  <!-- SOCIAL BAR AZUL -->
-  <div class="social-bar">
-    <span>SÍGUENOS EN NUESTRAS REDES</span>
-    <div class="icons">
-      <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-twitter"></i></a>
-      <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-      <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-    </div>
-  </div>
+          <div class="row">
+            <span class="ic"><i class="fa-solid fa-envelope"></i></span>
+            <div><a href="mailto:josuenehemiasatucusi@gmail.com">josuenehemiasatucusi@gmail.com</a></div>
+          </div>
 
-  <!-- OFF-CANVAS -->
-  <div class="oc-overlay" id="oc-overlay" hidden></div>
-  <aside class="oc-panel" id="offcanvas" role="dialog" aria-modal="true" aria-labelledby="oc-title" aria-hidden="true" tabindex="-1">
-    <div class="oc-header">
-      <img class="oc-feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="">
-      <button class="oc-close" id="oc-close" aria-label="Cerrar menú"><span aria-hidden="true">✕</span></button>
-    </div>
-    <div class="oc-content">
-      <h2 id="oc-title" class="visuallyHidden">Menú principal</h2>
-      <a class="oc-link" href="index.html">Inicio</a>
-      <a class="oc-link" href="perfil.html">Perfil</a>
-      <a class="oc-link" href="parcial.html">Parcial</a>
-      <a class="oc-link" href="portafolio.html">Portafolio</a>
-      <a class="oc-link" href="contacto.html">Contacto</a>
-    </div>
-    <div class="oc-footer">
-      <a href="#">Política de Privacidad</a>
-      <a href="#">Términos de Uso</a>
-      <a href="#">Accesibilidad</a>
-    </div>
-  </aside>
+          <h3 class="section-h" style="margin-top:18px">Redes sociales</h3>
+          <div class="socials">
+            <a class="s-btn" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="s-btn" href="#" aria-label="Twitter / X"><i class="fa-brands fa-twitter"></i></a>
+            <a class="s-btn" href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            <a class="s-btn" href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-  <!-- LOGIN MODAL -->
+    <!-- SOCIAL BAR AZUL -->
+    <div class="social-bar">
+      <span>SÍGUENOS EN NUESTRAS REDES</span>
+      <div class="icons">
+        <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- OFF-CANVAS -->
+    <div class="oc-overlay" id="oc-overlay" hidden></div>
+    <aside class="oc-panel" id="offcanvas" role="dialog" aria-modal="true" aria-labelledby="oc-title" aria-hidden="true" tabindex="-1">
+      <div class="oc-header">
+        <img class="oc-feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="">
+        <button class="oc-close" id="oc-close" aria-label="Cerrar menú"><span aria-hidden="true">✕</span></button>
+      </div>
+      <div class="oc-content">
+        <h2 id="oc-title" class="visuallyHidden">Menú principal</h2>
+        <a class="oc-link" href="index.html">Inicio</a>
+        <a class="oc-link" href="perfil.html">Perfil</a>
+        <a class="oc-link" href="parcial.html">Parcial</a>
+        <a class="oc-link" href="portafolio.html">Portafolio</a>
+        <a class="oc-link" href="contacto.html">Contacto</a>
+      </div>
+      <div class="oc-footer">
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos de Uso</a>
+        <a href="#">Accesibilidad</a>
+      </div>
+    </aside>
+
+    <!-- ===== LOGIN MODAL ===== -->
   <div class="login-overlay" id="login-overlay" aria-hidden="true">
     <div class="login-card" role="dialog" aria-modal="true" aria-labelledby="login-title">
       <div class="login-head">
-        <div class="login-logo">
-          <img src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="" style="height:28px;opacity:.9">
-        </div>
+        <div class="login-logo"><img src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="" style="height:28px;opacity:.9"></div>
         <button class="login-x" id="login-close" aria-label="Cerrar">✕</button>
       </div>
-
       <h3 class="login-title" id="login-title">Iniciar sesión</h3>
       <p class="login-sub">Ingresa tus credenciales para continuar</p>
-
-      <div class="login-field">
-        <label class="login-label" for="login-email">Correo electrónico</label>
-        <input class="login-input" id="login-email" type="email" placeholder="nombre@ejemplo.com" />
-      </div>
-
-      <div class="login-field">
-        <label class="login-label" for="login-password">Contraseña</label>
-        <input class="login-input" id="login-password" type="password" placeholder="••••••••" />
-      </div>
-
+      <div class="login-field"><label class="login-label" for="login-email">Correo electrónico</label><input class="login-input" id="login-email" type="email" placeholder="nombre@ejemplo.com" /></div>
+      <div class="login-field"><label class="login-label" for="login-password">Contraseña</label><input class="login-input" id="login-password" type="password" placeholder="••••••••••••••••" /></div>
       <button class="login-btn" id="login-continue">Continuar</button>
       <span class="login-or">o</span>
-
       <button class="login-google"><i class="fa-brands fa-google"></i> Iniciar sesión con Google</button>
-      <p class="login-note">¿Suscriptor de Twitch? <a href="#">Accede aquí</a></p>
+      <p class="login-note">¿Suscriptor de UPLA? <a href="#">Accede aquí</a></p>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <section class="foot-left">
-      <img class="feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="Blue Origin Feather">
-      <div class="legal">© 2025 BLUE ORIGIN</div>
-      <div class="legal-links">
-        <a href="#">Política de Privacidad</a>
-        <a href="#">Términos de Uso</a>
-      </div>
-    </section>
-    <section class="foot-center">
-      <nav class="menu">
-        ENLACES RÁPIDOS
-        <a href="index.html">Inicio</a>
-        <a href="perfil.html">Perfil</a>
-        <a href="parcial.html">Parcial</a>
-        <a href="portafolio.html">Portafolio</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="#">Iniciar Sesión</a>
-        <div class="select-wrap">
-          <select class="select" aria-label="Preferencias de visualización">
-            <option selected>Sin preferencia(predeterminado)</option>
-            <option>Sans Serif</option>
-            <option>Serif</option>
-            <option>High Contrast</option>
-          </select>
+    <!-- FOOTER -->
+    <footer>
+      <section class="foot-left">
+        <img class="feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="Blue Origin Feather">
+        <div class="legal">© 2025 BLUE ORIGIN</div>
+        <div class="legal-links">
+          <a href="#">Política de Privacidad</a>
+          <a href="#">Términos de Uso</a>
         </div>
-      </nav>
-    </section>
-    <section class="foot-right">
-      <h3>Suscribirse</h3>
-      <p>Regístrate para recibir actualizaciones sobre los anuncios, lanzamientos y oportunidades de Trabajos.</p>
-      <div class="req">* indica un campo requerido</div>
-      <label class="label" for="email">Correo electrónico *</label>
-      <input class="input" id="email" type="email" required>
-      <div class="check">
-        <span class="box" aria-hidden="true"></span>
-        <p>
-          Por favor, haga clic para confirmar su consentimiento para recibir actualizaciones por correo electrónico de nuestra parte. Nota: tiene el derecho de retirar su consentimiento en cualquier momento contactándonos a
-          <a href="mailto:josuenehemiasatucusi@gmail.com" style="color:#fff">josuenehemiasatucusi@gmail.com</a> o haciendo clic en el enlace de “cancelar suscripción” en los correos electrónicos que le enviamos. Por favor, revise nuestra <u>política de privacidad</u> para más información sobre cómo procesamos sus datos.
-        </p>
-      </div>
-      <button class="submit" type="button">Enviar</button>
-    </section>
-  </footer>
+      </section>
+      <section class="foot-center">
+        <nav class="menu">
+          ENLACES RÁPIDOS
+          <a href="index.html">Inicio</a>
+          <a href="perfil.html">Perfil</a>
+          <a href="parcial.html">Parcial</a>
+          <a href="portafolio.html">Portafolio</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="#">Iniciar Sesión</a>
+          <div class="select-wrap">
+            <select class="select" aria-label="Preferencias de visualización">
+              <option selected>Sin preferencia(predeterminado)</option>
+              <option>Sans Serif</option>
+              <option>Serif</option>
+              <option>High Contrast</option>
+            </select>
+          </div>
+        </nav>
+      </section>
+      <section class="foot-right">
+        <h3>Suscribirse</h3>
+        <p>Regístrate para recibir actualizaciones sobre los anuncios, lanzamientos y oportunidades de Trabajos.</p>
+        <div class="req">* indica un campo requerido</div>
+        <label class="label" for="email">Correo electrónico *</label>
+        <input class="input" id="email" type="email" required>
+        <div class="check">
+          <span class="box" aria-hidden="true"></span>
+          <p>
+            Por favor, haga clic para confirmar su consentimiento para recibir actualizaciones por correo electrónico de nuestra parte. Nota: tiene el derecho de retirar su consentimiento en cualquier momento contactándonos a
+            <a href="mailto:josuenehemiasatucusi@gmail.com" style="color:#fff">josuenehemiasatucusi@gmail.com</a> o haciendo clic en el enlace de “cancelar suscripción” en los correos electrónicos que le enviamos. Por favor, revise nuestra <u>política de privacidad</u> para más información sobre cómo procesamos sus datos.
+          </p>
+        </div>
+        <button class="submit" type="button">Enviar</button>
+      </section>
+    </footer>
 
-  <!-- JS -->
-  <script>
-    /* ===== Off-canvas ===== */
-    const body = document.body;
-    const trigger = document.getElementById('oc-trigger');
-    const overlay = document.getElementById('oc-overlay');
-    const panel = document.getElementById('offcanvas');
-    const btnClose = document.getElementById('oc-close');
+    <!-- JS -->
+    <script>
+      /* ===== Off-canvas ===== */
+      const body = document.body;
+      const trigger = document.getElementById('oc-trigger');
+      const overlay = document.getElementById('oc-overlay');
+      const panel = document.getElementById('offcanvas');
+      const btnClose = document.getElementById('oc-close');
 
-    function closeOC(){
-      body.classList.remove('oc-open');
-      body.style.overflow = '';
-      trigger?.setAttribute('aria-expanded','false');
-      panel.setAttribute('aria-hidden','true');
-      overlay.hidden = true;
-      trigger?.focus();
-    }
-    trigger.addEventListener('click', ()=>{
-      body.classList.add('oc-open');
-      body.style.overflow = 'hidden';
-      overlay.hidden = false;
-      panel.removeAttribute('aria-hidden');
-      trigger.setAttribute('aria-expanded','true');
-      btnClose.focus();
-    });
-    btnClose.addEventListener('click', closeOC);
-    overlay.addEventListener('click', closeOC);
+      function closeOC(){
+        body.classList.remove('oc-open');
+        body.style.overflow = '';
+        trigger?.setAttribute('aria-expanded','false');
+        panel.setAttribute('aria-hidden','true');
+        overlay.hidden = true;
+        trigger?.focus();
+      }
+      trigger.addEventListener('click', ()=>{
+        body.classList.add('oc-open');
+        body.style.overflow = 'hidden';
+        overlay.hidden = false;
+        panel.removeAttribute('aria-hidden');
+        trigger.setAttribute('aria-expanded','true');
+        btnClose.focus();
+      });
+      btnClose.addEventListener('click', closeOC);
+      overlay.addEventListener('click', closeOC);
 
-    /* ===== Login modal ===== */
-    const openLogin = document.getElementById('open-login');
-    const loginOverlay = document.getElementById('login-overlay');
-    const loginClose = document.getElementById('login-close');
-    const loginEmail = document.getElementById('login-email');
-    const loginPass  = document.getElementById('login-password');
+      /* ===== Login modal ===== */
+      const openLogin = document.getElementById('open-login');
+      const loginOverlay = document.getElementById('login-overlay');
+      const loginClose = document.getElementById('login-close');
+      const loginEmail = document.getElementById('login-email');
+      const loginPass  = document.getElementById('login-password');
 
-    function openLoginModal(e){
-      e?.preventDefault();
-      body.classList.add('login-open');
-      loginOverlay.setAttribute('aria-hidden','false');
-      body.style.overflow = 'hidden';
-      setTimeout(()=> loginEmail.focus(), 50);
-    }
-    function closeLoginModal(){
-      body.classList.remove('login-open');
-      loginOverlay.setAttribute('aria-hidden','true');
-      body.style.overflow = '';
-      openLogin?.focus();
-    }
+      function openLoginModal(e){
+        e?.preventDefault();
+        body.classList.add('login-open');
+        loginOverlay.setAttribute('aria-hidden','false');
+        body.style.overflow = 'hidden';
+        setTimeout(()=> loginEmail.focus(), 50);
+      }
+      function closeLoginModal(){
+        body.classList.remove('login-open');
+        loginOverlay.setAttribute('aria-hidden','true');
+        body.style.overflow = '';
+        openLogin?.focus();
+      }
 
-    openLogin.addEventListener('click', openLoginModal);
-    loginClose.addEventListener('click', closeLoginModal);
-    loginOverlay.addEventListener('click', (e)=>{ if(e.target === loginOverlay) closeLoginModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLoginModal(); });
+      openLogin.addEventListener('click', openLoginModal);
+      loginClose.addEventListener('click', closeLoginModal);
+      loginOverlay.addEventListener('click', (e)=>{ if(e.target === loginOverlay) closeLoginModal(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLoginModal(); });
 
-    // Demo "Continuar"
-    document.getElementById('login-continue').addEventListener('click', ()=>{
-      alert(
-        'Correo: ' + (loginEmail.value || '(vacío)') +
-        '\nContraseña: ' + (loginPass.value ? '••••••••' : '(vacía)')
-      );
-    });
+      // Demo "Continuar"
+      document.getElementById('login-continue').addEventListener('click', ()=>{
+        alert(
+          'Correo: ' + (loginEmail.value || '(vacío)') +
+          '\nContraseña: ' + (loginPass.value ? '••••••••' : '(vacía)')
+        );
+      });
 
-    /* ===== Formulario de contacto (demo) ===== */
-    document.getElementById('contact-form').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const data = new FormData(e.target);
-      alert(
-        '¡Mensaje enviado!\n\n' +
-        'Nombre: ' + (data.get('name')||'') + '\n' +
-        'Email: ' + (data.get('email')||'') + '\n' +
-        'Mensaje: ' + (data.get('message')||'')
-      );
-      e.target.reset();
-    });
-  </script>
-</body>
-</html>
+      /* ===== Formulario de contacto (demo) ===== */
+      document.getElementById('contact-form').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const data = new FormData(e.target);
+        alert(
+          '¡Mensaje enviado!\n\n' +
+          'Nombre: ' + (data.get('name')||'') + '\n' +
+          'Email: ' + (data.get('email')||'') + '\n' +
+          'Mensaje: ' + (data.get('message')||'')
+        );
+        e.target.reset();
+      });
+    </script>
+  </body>
+  </html>
