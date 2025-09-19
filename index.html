@@ -146,26 +146,29 @@
     .feather{width:220px}
   }
 
-  /* ====== LOGIN MODAL ====== */
-  .login-overlay{position:fixed; inset:0; z-index:1400; background:rgba(0,0,0,.6); backdrop-filter:blur(2px); opacity:0; pointer-events:none; transition:opacity .2s ease; display:grid; place-items:center; padding:24px;}
-  .login-card{width:min(520px,96vw); background:rgba(21,22,28,.98); border:1px solid rgba(255,255,255,.08); border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.55); padding:28px 22px 22px; transform:translateY(10px) scale(.98); opacity:0; transition:transform .2s ease, opacity .2s ease; color:#e8eaf0;}
-  .login-open .login-overlay{opacity:1; pointer-events:auto}
-  .login-open .login-card{transform:translateY(0) scale(1); opacity:1}
-  .login-head{display:flex;align-items:center;justify-content:center;gap:12px; margin-bottom:16px; position:relative}
-  .login-x{position:absolute; right:4px; top:0; width:36px; height:36px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:transparent; color:#cfd6e6;display:inline-flex; align-items:center; justify-content:center; cursor:pointer;}
-  .login-logo{width:46px; height:46px; border-radius:12px; background:#0d6efd22; display:grid; place-items:center; border:1px solid rgba(255,255,255,.08);}
-  .login-title{font-size:22px; font-weight:900; text-align:center}
-  .login-sub{font-size:13px; text-align:center; color:#b9c0cc; margin:4px 0 16px}
-  .login-label{font-size:12px; text-transform:uppercase; letter-spacing:.16em; font-weight:800; color:#c9d1e0; margin:0 0 6px 2px}
-  .login-field{margin-bottom:10px}
-  .login-input{width:100%; height:46px; border-radius:10px; background:#0f1117; border:1px solid #2a2f3a; color:#fff; padding:0 12px; font-size:15px; outline:none;}
-  .login-input:focus{border-color:#3f8cff; box-shadow:0 0 0 3px rgba(63,140,255,.25)}
-  .login-btn{margin-top:12px; width:100%; height:46px; border-radius:10px;border:none; background:#1677ff; color:#fff; font-weight:900; letter-spacing:.04em; cursor:pointer;}
-  .login-btn:hover{filter:brightness(1.05)}
-  .login-or{display:block; text-align:center; opacity:.65; margin:12px 0 6px}
-  .login-google{width:100%; height:46px; border-radius:10px; border:1px solid #d2d6dd; background:#fff; color:#1f2937; display:flex; align-items:center; justify-content:center; gap:10px; cursor:pointer; font-weight:800;}
-  .login-google:hover{background:#f8fafc; border-color:#cfd6e6}
-  .login-google i{font-size:18px; color:#4285F4}
+  /* ===== LOGIN MODAL ===== */
+  .login-overlay{position:fixed; inset:0; z-index:1400;background:rgba(0,0,0,.6); backdrop-filter:blur(2px);opacity:0; pointer-events:none; transition:opacity .2s ease;display:grid; place-items:center; padding:24px;}
+    .login-card{width:min(520px,96vw);background:rgba(21,22,28,.98);border:1px solid rgba(255,255,255,.08);border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.55);padding:28px 22px 22px;transform:translateY(10px) scale(.98);opacity:0; transition:transform .2s ease, opacity .2s ease;color:#e8eaf0;}
+    .login-open .login-overlay{opacity:1; pointer-events:auto}
+    .login-open .login-card{transform:translateY(0) scale(1); opacity:1}
+    .login-head{display:flex;align-items:center;justify-content:center;gap:12px; margin-bottom:16px; position:relative}
+    .login-x{position:absolute; right:4px; top:0;width:36px; height:36px; border-radius:10px;border:1px solid rgba(255,255,255,.14); background:transparent; color:#cfd6e6;display:inline-flex; align-items:center; justify-content:center; cursor:pointer;}
+    .login-logo{width:46px; height:46px; border-radius:12px; background:#0d6efd22; display:grid; place-items:center;border:1px solid rgba(255,255,255,.08);}
+    .login-title{font-size:22px; font-weight:900; text-align:center}
+    .login-sub{font-size:13px; text-align:center; color:#b9c0cc; margin:4px 0 16px}
+    .login-label{font-size:12px; text-transform:uppercase; letter-spacing:.16em; font-weight:800; color:#c9d1e0; margin:0 0 6px 2px}
+    .login-field{margin-bottom:10px}
+    .login-input{width:100%; height:46px; border-radius:10px;background:#0f1117; border:1px solid #2a2f3a; color:#fff;padding:0 12px; font-size:15px; outline:none;}
+    .login-input:focus{border-color:#3f8cff; box-shadow:0 0 0 3px rgba(63,140,255,.25)}
+    .login-btn{margin-top:12px; width:100%; height:46px; border-radius:10px;border:none; background:#1677ff; color:#fff; font-weight:900; letter-spacing:.04em; cursor:pointer;}
+    .login-btn:hover{filter:brightness(1.05)}
+    .login-or{display:block; text-align:center; opacity:.65; margin:12px 0 6px}
+    .login-google{width:100%; height:46px; border-radius:10px; border:1px solid #d2d6dd; background:#fff; color:#1f2937;display:flex; align-items:center; justify-content:center; gap:10px; cursor:pointer; font-weight:800;}
+    .login-google:hover{ background:#f8fafc; border-color:#cfd6e6 }
+    .login-google i{ font-size:18px; color:#4285F4 }
+    .login-note{font-size:12px; text-align:center; margin-top:10px; color:#9aa3b2}
+    .login-note a{color:#9bb7ff; text-decoration:none}
+    .login-note a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -276,7 +279,7 @@
   <div class="oc-footer"><a href="#">Política de Privacidad</a><a href="#">Términos de Uso</a><a href="#">Accesibilidad</a></div>
 </aside>
 
-<!-- LOGIN MODAL -->
+<!-- ===== LOGIN MODAL ===== -->
 <div class="login-overlay" id="login-overlay" aria-hidden="true">
   <div class="login-card" role="dialog" aria-modal="true" aria-labelledby="login-title">
     <div class="login-head">
@@ -286,10 +289,11 @@
     <h3 class="login-title" id="login-title">Iniciar sesión</h3>
     <p class="login-sub">Ingresa tus credenciales para continuar</p>
     <div class="login-field"><label class="login-label" for="login-email">Correo electrónico</label><input class="login-input" id="login-email" type="email" placeholder="nombre@ejemplo.com" /></div>
-    <div class="login-field"><label class="login-label" for="login-password">Contraseña</label><input class="login-input" id="login-password" type="password" placeholder="••••••••" /></div>
-    <button class="login-btn" id="login-continue">Continuar</button><span class="login-or">o</span>
+    <div class="login-field"><label class="login-label" for="login-password">Contraseña</label><input class="login-input" id="login-password" type="password" placeholder="••••••••••••••••" /></div>
+    <button class="login-btn" id="login-continue">Continuar</button>
+    <span class="login-or">o</span>
     <button class="login-google"><i class="fa-brands fa-google"></i> Iniciar sesión con Google</button>
-    <p class="login-note">¿Suscriptor de Twitch? <a href="#">Accede aquí</a></p>
+    <p class="login-note">¿Suscriptor de UPLA? <a href="#">Accede aquí</a></p>
   </div>
 </div>
 
