@@ -12,16 +12,18 @@
 <style>
   :root{
     --blue:#0033DD; --blue-dark:#062dc7; --white:#fff;
-    --foot-left:#1b1b1b; --foot-right:#3b3b3b; --line:#2b2b2b;
+    --foot-left:#1b1b1b; --foot-right:#3b3b3b; --line:#e6e6e6;
+    --ink:#111827; --ink-2:#374151; --ink-3:#6b7280; --accent:#ff2740;
+    --card:#ffffff; --stroke:#e5e7eb; --hover:#f6f7fb;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
+  body{background:#fff;color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
 
   .wrap{max-width:1240px;margin:0 auto;padding:0 22px}
   .visuallyHidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
 
-  /* HEADER (igual a index) */
+  /* ===== HEADER (igual) ===== */
   .topbar{position:sticky;top:0;z-index:1000;background:var(--blue);
     height:96px;display:flex;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
   .nav{width:100%;margin:0;padding:0 30px;height:96px;display:grid;
@@ -39,37 +41,49 @@
   .burger::after{display:none}
   @media (max-width:1200px){.nav-center{display:none}}
 
-  /* CONTENIDO: MI CUENTA */
+  /* ===== CONTENIDO: MI CUENTA (BLANCO) ===== */
   .page{max-width:1240px;margin:40px auto;padding:0 22px}
-  .hello{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+  .hello{display:flex;align-items:center;gap:16px;margin-bottom:18px}
   .avatar{width:72px;height:72px;border-radius:50%;background:#e5e7eb;color:#374151;
-    display:grid;place-items:center;font-weight:900;font-size:22px;border:6px solid rgba(255,255,255,.12)}
-  .hello h1{font-size:46px;letter-spacing:.01em}
+    display:grid;place-items:center;font-weight:900;font-size:22px;border:6px solid #fff}
+  .hello h1{font-size:40px;letter-spacing:.01em;color:var(--ink)}
 
   .grid{display:grid;grid-template-columns:280px 1fr;gap:28px}
-  .sidebar{background:#0b1024;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px}
-  .side-item{display:block;padding:12px 14px;border-radius:10px;color:#e5e7eb;font-weight:700}
-  .side-item:hover{background:rgba(255,255,255,.08)}
-  .side-item.active{background:linear-gradient(90deg,#ff2740 0%, transparent 40%);border-left:3px solid #ff2740}
 
+  /* Sidebar blanco */
+  .sidebar{background:var(--card);border:1px solid var(--stroke);border-radius:14px;padding:8px}
+  .side-item{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:10px;
+    color:var(--ink-2);font-weight:700;text-decoration:none;border-left:3px solid transparent}
+  .side-item:hover{background:var(--hover)}
+  .side-item.active{border-left-color:#e11d48;background:#fff0f3;color:#9f1239}
+
+  /* Panel principal */
   .panel{display:grid;grid-template-columns:1fr 360px;gap:18px}
-  .card{background:#0b1024;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px}
-  .card h3{margin:0 0 12px 0}
-  .table{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.1)}
-  .label{color:#cbd5e1;font-weight:700}
-  .value{color:#b7c3d7}
-  .btn{background:#ff2740;color:#fff;border:none;border-radius:20px;padding:10px 16px;font-weight:900;cursor:pointer}
+  .card{background:var(--card);border:1px solid var(--stroke);border-radius:14px;padding:18px}
+  /* >>> Marco negro SOLO para "Datos personales" <<< */
+  .card--marco{border:4px solid #000 !important}
 
-  @media (max-width:980px){ .grid{grid-template-columns:1fr}.panel{grid-template-columns:1fr} }
+  .card h3{margin:0 0 12px 0;color:var(--ink-2);font-weight:800}
 
-  /* SOCIAL BAR */
-  .social-bar{background:var(--blue);padding:18px 20px;display:flex;justify-content:center;align-items:center;gap:22px}
-  .social-bar span{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800}
+  /* Tabla de datos */
+  .table{display:grid;grid-template-columns:1fr 1fr;column-gap:20px;row-gap:6px}
+  .row{display:grid;grid-template-columns:220px 1fr;align-items:center;padding:10px 0;border-bottom:1px dashed #ececec}
+  .row:last-child{border-bottom:none}
+  .label{color:var(--ink-3);font-weight:800}
+  .value{color:var(--ink-2)}
+  .btn{background:var(--ink);color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:800;cursor:pointer}
+  .btn:hover{opacity:.9}
+  .help{font-size:12px;color:#6b7280;margin-top:8px}
+
+  @media (max-width:980px){ .grid{grid-template-columns:1fr}.panel{grid-template-columns:1fr} .row{grid-template-columns:160px 1fr} }
+
+  /* Social bar */
+  .social-bar{background:var(--blue);padding:18px 20px;display:flex;justify-content:center;align-items:center;gap:22px;margin-top:28px}
+  .social-bar span{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:#fff}
   .icons{display:flex;gap:18px;align-items:center}
   .icons a{width:34px;height:34px;border:2px solid #fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none}
 
-  /* OFF-CANVAS */
+  /* Off-canvas */
   .oc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:saturate(130%) blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;}
   .oc-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,88vw);background:#2e2e2e;color:#fff;transform:translateX(100%);transition:transform .28s ease;z-index:1300;display:flex;flex-direction:column;box-shadow:-8px 0 22px rgba(0,0,0,.45);}
   .oc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
@@ -84,7 +98,7 @@
   .oc-open .oc-overlay{opacity:1;pointer-events:auto}
   .oc-open .oc-panel{transform:translateX(0)}
 
-  /* FOOTER (igual a index) */
+  /* Footer (igual) */
   footer{display:grid;grid-template-columns:45% 22% 33%;height:635px;background:linear-gradient(90deg,var(--foot-left)0 67.6%,var(--foot-right)67.6% 100%);color:#fff;border-top:1px solid #232323}
   .foot-left{padding:80px 40px 40px 120px;display:flex;flex-direction:column;justify-content:center}
   .feather{width:340px;max-width:90%;margin:0 0 28px 0;filter:brightness(1.05)}
@@ -93,7 +107,7 @@
   .legal-links a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px;font-size:14px}
   .legal-links a:hover{border-bottom-color:#fff}
   .foot-center{position:relative;padding:60px 40px 60px 0}
-  .foot-center::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:1px;background:var(--line)}
+  .foot-center::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:1px;background:#2b2b2b}
   .menu{padding-left:40px;display:flex;flex-direction:column;gap:26px}
   .menu a{color:#fff;text-decoration:none;font-size:16px;letter-spacing:.04em}
   .menu a:hover{text-decoration:underline}
@@ -120,7 +134,7 @@
   }
 </style>
 
-<!-- Módulo 1: protección (si no hay sesión, redirige a login) -->
+<!-- Módulo 1: protección -->
 <script type="module">
   import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
   import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
@@ -144,7 +158,7 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ===== HEADER ===== -->
 <header class="topbar">
   <nav class="nav">
     <a class="brand" href="index.html">
@@ -172,7 +186,7 @@
   </nav>
 </header>
 
-<!-- CONTENIDO -->
+<!-- ===== CONTENIDO ===== -->
 <main class="page">
   <div class="hello">
     <div class="avatar" id="cuentaAvatar">U</div>
@@ -183,33 +197,43 @@
   </div>
 
   <div class="grid">
+    <!-- Sidebar -->
     <aside class="sidebar">
-      <a class="side-item active" href="cuenta.html">Perfil</a>
-      <a class="side-item" href="#">Direcciones</a>
-      <a class="side-item" href="#">Pedidos</a>
-      <a class="side-item" href="#">Tarjetas de crédito</a>
-      <a class="side-item" href="#">Autenticación</a>
-      <a class="side-item" id="cuentaSalir" href="#">Salir</a>
+      <a class="side-item active" href="cuenta.html"><i class="fa-regular fa-user"></i> Perfil</a>
+      <a class="side-item" href="#"><i class="fa-regular fa-map"></i> Direcciones</a>
+      <a class="side-item" href="#"><i class="fa-regular fa-list-alt"></i> Pedidos</a>
+      <a class="side-item" href="#"><i class="fa-regular fa-credit-card"></i> Tarjetas de crédito</a>
+      <a class="side-item" href="#"><i class="fa-solid fa-shield-halved"></i> Autenticación</a>
+      <a class="side-item" id="cuentaSalir" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
     </aside>
 
+    <!-- Panel -->
     <section class="panel">
-      <article class="card">
+      <!-- Ficha de datos (con marco negro) -->
+      <article class="card card--marco">
         <h3>Datos personales</h3>
         <div class="table">
           <div class="row"><div class="label">Nombre</div><div class="value" id="valNombre">—</div></div>
-          <div class="row"><div class="label">Apellido</div><div class="value" id="valApellido">—</div></div>
-          <div class="row"><div class="label">Email</div><div class="value" id="valEmail">—</div></div>
+          <div class="row"><div class="label">Apellidos</div><div class="value" id="valApellido">—</div></div>
+          <div class="row"><div class="label">OpenAI</div><div class="value" id="valOpenAI">—</div></div>
+          <div class="row"><div class="label">Documento de Identidad</div><div class="value" id="valDoc">—</div></div>
+          <div class="row"><div class="label">Género</div><div class="value" id="valGenero">—</div></div>
+          <div class="row"><div class="label">Fecha de nacimiento</div><div class="value" id="valNacimiento">—</div></div>
+          <div class="row"><div class="label">Teléfono</div><div class="value" id="valTelefono">—</div></div>
         </div>
         <div style="display:flex;justify-content:flex-end;margin-top:12px">
           <button class="btn" type="button">Editar</button>
         </div>
+        <p class="help">Si algún dato es incorrecto, pulsa “Editar” o actualiza tu información en tu perfil.</p>
       </article>
 
+      <!-- Boletín con nota SS -->
       <aside class="card">
         <h3>Boletín informativo</h3>
-        <label style="display:flex;gap:10px;align-items:center;color:#d1d5db">
+        <label style="display:flex;gap:10px;align-items:center;color:#374151">
           <input type="checkbox" id="chkNews"><span>Quiero recibir promociones.</span>
         </label>
+        <p class="help">SS: Al activar esta opción, te enviaremos correos ocasionales con novedades y descuentos. Puedes darte de baja cuando quieras.</p>
       </aside>
     </section>
   </div>
@@ -217,7 +241,7 @@
 
 <!-- SOCIAL BAR -->
 <div class="social-bar">
-  <span>SIGUENOS EN NUESTRAS REDES</span>
+  <span>SÍGUENOS EN NUESTRAS REDES</span>
   <div class="icons">
     <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
     <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -294,13 +318,12 @@
   btnClose.addEventListener('click',closeOC);overlay.addEventListener('click',closeOC);
 </script>
 
-<!-- Módulo 2: Datos de usuario + Salir (NOMBRES RENOMBRADOS) -->
+<!-- Módulo 2: Datos de usuario + Salir -->
 <script type="module">
   import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
   import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-  /* Nombres distintos para evitar conflicto con el módulo 1 */
   const firebaseConfig2 = {
     apiKey:"AIzaSyCo3llrVhgJroj1NcM4tGiKOJQVwRIx4FU",
     authDomain:"login-form-6f237.firebaseapp.com",
@@ -315,21 +338,37 @@
   const auth2 = getAuth(app2);
   const db2   = getFirestore(app2);
 
+  function setTxt(id,val){ const el=document.getElementById(id); if(el) el.textContent = val ?? '—'; }
+
   async function fill(uid, user){
     let first='', last='', email=user?.email||'';
+    let docId='', gender='', birth='', phone='';
+
     try{
       const snap = await getDoc(doc(db2,'users',uid));
       if(snap.exists()){
         const d = snap.data();
-        first=(d.firstName||'').trim();
-        last =(d.lastName||'').trim();
-        email=d.email||email;
+        first = (d.firstName||'').trim();
+        last  = (d.lastName||'').trim();
+        email = d.email || email;
+        docId = d.documentId || '';
+        gender= d.gender || '';
+        birth = d.birthDate || '';
+        phone = d.phone || '';
       }
-    }catch{}
-    const set=(id,val)=>{const el=document.getElementById(id); if(el) el.textContent = val||'—';};
-    set('valNombre',first); set('valApellido',last); set('valEmail',email);
+    }catch(e){}
+
+    setTxt('valNombre', first || '—');
+    setTxt('valApellido', last  || '—');
+    setTxt('valOpenAI', email || '—');
+    setTxt('valDoc', docId || '—');
+    setTxt('valGenero', gender || '—');
+    setTxt('valNacimiento', birth || '—');
+    setTxt('valTelefono', phone || '—');
+
+    const av=document.getElementById('cuentaAvatar');
     const display=(first||last)?`${first} ${last}`.trim():(email?email.split('@')[0]:'U');
-    const av=document.getElementById('cuentaAvatar'); if(av) av.textContent = display.charAt(0).toUpperCase();
+    if(av) av.textContent = display.charAt(0).toUpperCase();
   }
 
   onAuthStateChanged(auth2, async (user)=>{
@@ -344,7 +383,6 @@
   });
 </script>
 
-<!-- Menú usuario -->
 <script type="module" src="usermenu.js"></script>
 </body>
 </html>
