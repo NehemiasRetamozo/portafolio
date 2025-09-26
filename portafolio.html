@@ -7,8 +7,6 @@
 
   <link rel="icon" href="assets/img/logo.png" type="image/png" />
   <link rel="preconnect" href="https://d1o72l87sylvqg.cloudfront.net" crossorigin>
-
-  <!-- Font Awesome por CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
@@ -16,54 +14,23 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
+    a,button,[role="button"],.cta,.burger,.translate-button,.icons a,.oc-close,.oc-link,.btn,.btn-ghost,.btn-solid,.btn-view,.submit,.week>summary{cursor:pointer}
+    input,textarea,select{cursor:text}
+    .visuallyHidden{position:absolute!important;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden;white-space:nowrap}
 
-    /* ===== CURSORES / INTERACTIVOS ===== */
-    a,
-    button,
-    [role="button"],
-    .cta,
-    .burger,
-    .translate-button,
-    .icons a,
-    .oc-close,
-    .oc-link,
-    .oc-overlay,
-    .btn,
-    .btn-ghost,
-    .btn-solid,
-    .btn-view,
-    .submit,
-    .week > summary {
-      cursor: pointer;
-    }
-    input,textarea,select { cursor: text; }
-    /* Si quieres usar un cursor personalizado, descomenta y ajusta:
-    a,button,[role="button"],.cta,.burger,.translate-button,.icons a,.oc-close,.oc-link,.oc-overlay,.btn,.btn-ghost,.btn-solid,.btn-view,.submit,.week>summary {
-      cursor: url('assets/img/tu-cursor.png') 12 12, pointer;
-    } */
-
-    /* HEADER */
-    .topbar{
-      position:sticky;top:0;z-index:1000;background:var(--blue);
-      height:96px;display:flex;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)
-    }
-    /* A los cantos con 30px (igual que PARCIAL) */
-    .nav{
-      width:100%; margin:0; padding:0 30px; height:96px;
-      display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px
-    }
+    /* ===== HEADER ===== */
+    .topbar{position:sticky;top:0;z-index:1000;background:var(--blue);height:96px;display:flex;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+    .nav{width:100%;padding:0 30px;height:96px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px}
     .brand img{height:52px;width:auto;display:block}
     .nav-center{justify-self:center;display:flex;gap:54px;text-transform:uppercase;letter-spacing:.2em;font-weight:800;font-size:13px}
     .nav-center a{color:rgba(255,255,255,.95);text-decoration:none}
     .nav-center a:hover{color:#fff}
     .nav-right{justify-self:end;display:flex;gap:18px;align-items:center}
-    /* Se ha eliminado el texto "Translate" y se ha aumentado el tamaño del ícono */
-    .translate-button{background-color:#0033DD;border:none;border-radius:5px;padding:10px 20px;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;gap:20px;}
-    .translate-button svg{ width:30px; height:30px; fill:white;}
+    .translate-button{background:#0033DD;border:none;border-radius:5px;padding:10px 20px;color:#fff;font-size:16px;display:flex;align-items:center;gap:20px}
+    .translate-button svg{width:30px;height:30px}
     .cta{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:8px;background:#fff;color:#0033dd;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:12px;border:1px solid rgba(0,0,0,.06);text-decoration:none}
     .burger{width:42px;height:42px;background:transparent;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;border:none}
     .burger i,.burger::before{content:"";display:block;width:35px;height:5px;background:#fff;border-radius:2px}
-    .burger::after{display:none}
     @media (max-width:1200px){.nav-center{display:none}}
 
     /* ===== HERO ===== */
@@ -77,28 +44,45 @@
     .btn{color:#fff;text-decoration:none;border:2px solid rgba(255,255,255,.85);padding:12px 16px;border-radius:8px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;display:inline-block}
     .btn:hover{background:#fff;color:#0033dd}
 
-    /* ===== OFF-CANVAS ===== */
-    .oc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:saturate(130%) blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;}
-    .oc-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,88vw);background:#2e2e2e;color:#fff;transform:translateX(100%);transition:transform .28s ease;z-index:1300;display:flex;flex-direction:column;box-shadow:-8px 0 22px rgba(0,0,0,.45);}
-    .oc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+    /* ===== OFF-CANVAS (CSS corregido) ===== */
+    .oc-overlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.55);
+      backdrop-filter:saturate(130%) blur(2px);
+      opacity:0; pointer-events:none;
+      transition:opacity .25s ease;
+      z-index:1200;
+    }
+    .oc-panel{
+      position:fixed; top:0; right:0; height:100dvh;
+      width:min(420px,88vw);
+      background:#2e2e2e; color:#fff;
+      transform:translateX(100%);
+      transition:transform .28s ease;
+      z-index:1300;
+      display:flex; flex-direction:column;
+      box-shadow:-8px 0 22px rgba(0,0,0,.45);
+    }
+    body.oc-open .oc-overlay{ opacity:1; pointer-events:auto; }
+    body.oc-open{ overflow:hidden; }
+    body.oc-open .oc-panel{ transform:translateX(0); }
+    .oc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.12)}
     .oc-feather{height:28px}
-    .oc-close{width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center;}
+    .oc-close{width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center}
     .oc-content{padding:10px 20px 24px;overflow:auto}
-    .oc-link{display:block;padding:12px 2px;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08);}
+    .oc-link{display:block;padding:12px 2px;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08)}
     .oc-link:hover{background:#3a3a3a}
     .oc-footer{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:10px;flex-wrap:wrap}
     .oc-footer a{color:#fff;text-decoration:none;font-size:13px;opacity:.9}
     .oc-footer a:hover{opacity:1;text-decoration:underline}
-    .oc-open .oc-overlay{opacity:1;pointer-events:auto}
-    .oc-open .oc-panel{transform:translateX(0)}
 
-    /* ===== FOOTER ===== */
+    /* ===== FOOTER (igual) ===== */
     footer{display:grid;grid-template-columns:45% 22% 33%;height:635px;background:linear-gradient(90deg,var(--foot-left)0 67.6%,var(--foot-right)67.6% 100%);color:#fff;border-top:1px solid #232323}
     .foot-left{padding:80px 40px 40px 120px;display:flex;flex-direction:column;justify-content:center}
     .feather{width:340px;max-width:90%;margin:0 0 28px 0;filter:brightness(1.05)}
     .legal{margin-top:8px;font-size:14px;color:#d9d9d9}
     .legal-links{margin-top:18px;display:flex;gap:24px}
-    .legal-links a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px;font-size:14px}
+    .legal-links a{color:#fff;text-decoration:none;font-size:14px;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px}
     .legal-links a:hover{border-bottom-color:#fff}
     .foot-center{position:relative;padding:60px 40px 60px 0}
     .foot-center::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:1px;background:var(--line)}
@@ -117,7 +101,7 @@
     .check{display:flex;align-items:flex-start;gap:12px;margin-top:12px}
     .box{width:18px;height:18px;border:2px solid #fff;background:transparent;display:inline-block;flex-shrink:0}
     .check p{color:#e1e1e1;font-size:14px;line-height:1.6}
-    .submit{align-self:flex-start;margin-top:14px;background:transparent;color:#fff;border:2px solid #fff;border-radius:4px;padding:8px 14px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:13px;cursor:pointer}
+    .submit{align-self:flex-start;margin-top:14px;background:transparent;color:#fff;border:2px solid #fff;border-radius:4px;padding:8px 14px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:13px}
     .submit:hover{background:#fff;color:#000}
     @media(max-width:1100px){
       footer{grid-template-columns:1fr;height:auto}
@@ -127,7 +111,7 @@
       .feather{width:220px}
     }
 
-    /* ===== PORTAFOLIO POR SEMANAS ===== */
+    /* ===== PORTAFOLIO ===== */
     .weeks{background:#fff;color:#111;padding:56px 22px 88px}
     .weeks .wrap{max-width:1200px;margin:0 auto}
     .weeks h2{color:#0e0e0e;text-align:center;font-size:clamp(30px,5vw,52px);font-weight:900;margin:0 0 22px}
@@ -153,12 +137,23 @@
     .btn-solid:hover{filter:brightness(1.06)}
     .btn-view{background:#00d27a;color:#001b10}
 
+    /* ===== SOCIAL BAR ===== */
     .social-bar{background:var(--blue);padding:18px 20px;display:flex;justify-content:center;align-items:center;gap:22px}
     .social-bar span{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800}
     .icons{display:flex;gap:18px;align-items:center}
     .icons a{width:34px;height:34px;border:2px solid #fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:18px;text-decoration:none}
 
-    .visuallyHidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+    /* ===== VISOR MODAL ===== */
+    .viewer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;z-index:1400}
+    .viewer-overlay.open{display:flex}
+    .viewer-dialog{width:min(1200px,95vw);height:min(90vh,900px);background:#111;border:1px solid rgba(255,255,255,.15);border-radius:14px;box-shadow:0 12px 38px rgba(0,0,0,.6);display:flex;flex-direction:column;overflow:hidden}
+    .viewer-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.1)}
+    .viewer-title{font-weight:800;letter-spacing:.04em}
+    .viewer-actions{display:flex;gap:8px}
+    .viewer-actions a,.viewer-close{height:36px;padding:0 12px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:#1a1f27;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-size:14px}
+    .viewer-actions a:hover,.viewer-close:hover{background:#242b36}
+    .viewer-body{flex:1;position:relative;background:#0f1117}
+    .viewer-body iframe{position:absolute;inset:0;border:0;width:100%;height:100%}
   </style>
 </head>
 <body>
@@ -180,10 +175,9 @@
         <button type="button" class="translate-button" aria-label="Translate">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-labelledby="translateIcon">
             <title id="translateIcon">Translate</title>
-            <path d="M3 5h4m0 0h4M7 5V3m-4 9c5.4-1.5 6.6-7 6.6-7m-4 3c1 1.5 2.7 3.2 5.4 4m-8 3v2c0 1.1.9 2 2 2h4m0 0-3-2v4l3-2ZM21 9V7a2 2 0 0 0-2-2h-4m0 0 3 2V3l-3 2Zm6 16-4-9-4 9m.9-2H20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M3 5h4m0 0h4M7 5V3m-4 9c5.4-1.5 6.6-7 6.6-7m-4 3c1 1.5 2.7 3.2 5.4 4m-8 3v2c0 1.1.9 2 2 2h4m0 0-3-2v4l3-2ZM21 9V7a2 2 0 0 0-2-2h-4m0 0 3 2V3l-3 2Zm6 16-4-9-4 9m.9-2H20" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </button>
-        <!-- Botón convertido a enlace -->
         <a class="cta" href="login.html">Iniciar sesión</a>
         <button class="burger" id="oc-trigger" aria-haspopup="dialog" aria-controls="offcanvas" aria-expanded="false">
           <span class="visuallyHidden">Main menu</span><i></i>
@@ -198,7 +192,7 @@
       <div class="kicker">Mis Proyectos</div>
       <h1>Portafolio</h1>
       <strong class="ns">Trabajos Destacados</strong>
-      <p>Aquí puedes mostrar tus proyectos, piezas gráficas, enlaces, capturas de trabajo o diseños realizados—todo en un mismo espacio visual y organizado.</p>
+      <p>Aquí puedes mostrar tus proyectos, piezas gráficas, enlaces a repos y PDFs.</p>
       <a class="btn" href="index.html">Volver al Inicio</a>
     </div>
   </main>
@@ -207,7 +201,7 @@
   <section class="weeks" id="por-semanas">
     <div class="wrap">
       <h2>Portafolio Organizado por Semanas</h2>
-      <p class="lead">Sube aquí tus evidencias por semana: PDFs, imágenes, enlaces a Drive o a repositorios.</p>
+      <p class="lead">Sube aquí tus evidencias por semana.</p>
 
       <div class="accordion">
         <!-- Semana 1 -->
@@ -219,7 +213,7 @@
               <h4>Sílabo del curso</h4>
               <div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div>
               <div class="actions">
-                <a class="btn-ghost btn-view" href="assets/pdfs/1757563954874_VIII_ArquitecturaDeSoftware.pdf" target="_blank" rel="noopener">
+                <a class="btn-ghost btn-view" href="assets/pdfs/1757563954874_VIII_ArquitecturaDeSoftware.pdf" data-title="Sílabo del curso">
                   <i class="fa-solid fa-up-right-from-square"></i> Ver archivo
                 </a>
                 <a class="btn-solid" href="assets/pdfs/1757563954874_VIII_ArquitecturaDeSoftware.pdf" download>
@@ -232,7 +226,7 @@
               <h4>Clases (PDF)</h4>
               <div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div>
               <div class="actions">
-                <a class="btn-ghost btn-view" href="assets/pdfs/Clases.pdf" target="_blank" rel="noopener">
+                <a class="btn-ghost btn-view" href="assets/pdfs/Clases.pdf" data-title="Clases (PDF)">
                   <i class="fa-solid fa-up-right-from-square"></i> Ver archivo
                 </a>
                 <a class="btn-solid" href="assets/pdfs/Clases.pdf" download>
@@ -245,7 +239,7 @@
               <h4>Imagen de UPLA</h4>
               <div class="thumb"><img src="assets/img/semana1Trabajo.png" alt="Imagen UPLA"></div>
               <div class="actions">
-                <a class="btn-ghost btn-view" href="assets/img/semana1Trabajo.png" target="_blank" rel="noopener">
+                <a class="btn-ghost btn-view" href="assets/img/semana1Trabajo.png" data-title="Imagen de UPLA">
                   <i class="fa-solid fa-up-right-from-square"></i> Ver archivo
                 </a>
                 <a class="btn-solid" href="assets/img/semana1Trabajo.png" download>
@@ -257,16 +251,36 @@
           </div></div>
         </details>
 
-        <!-- Semana 2 -->
+        <!-- Semana 2 (ejemplo) -->
         <details class="week">
           <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 2</summary>
           <div class="panel"><div class="cards">
-            <article class="card"><h4>Fundamentos de Arquitecuta de Software</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/Actividad02_ArquitecturaSw_2025.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/Actividad02_ArquitecturaSw_2025.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
-            <article class="card"><h4>ESTÁNDARES INTERNACIONALES</h4><div class="thumb"><img src="assets/pdfs/Sesion02_ArquitecturaSw_2025.pdf" alt="Evidencia 1 semana 2"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/Sesion02_ArquitecturaSw_2025.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/Sesion02_ArquitecturaSw_2025.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
-            <article class="card"><h4>Estilos Arquitectonicos</h4><div class="thumb"><img src="assets/img/ESTILO ARQUITECTONICO.jpg" alt="Evidencia 2 semana 2"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/ESTILO ARQUITECTONICO.jpg" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/ESTILO ARQUITECTONICO.jpg" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card">
+              <h4>Fundamentos de Arquitectura de Software</h4>
+              <div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div>
+              <div class="actions">
+                <a class="btn-ghost btn-view" href="assets/pdfs/Actividad02_ArquitecturaSw_2025.pdf" data-title="Fundamentos de Arquitectura de Software"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a>
+                <a class="btn-solid" href="assets/pdfs/Actividad02_ArquitecturaSw_2025.pdf" download><i class="fa-solid fa-download"></i> Descargar</a>
+              </div>
+            </article>
+            <article class="card">
+              <h4>ESTÁNDARES INTERNACIONALES</h4>
+              <div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div>
+              <div class="actions">
+                <a class="btn-ghost btn-view" href="assets/pdfs/Sesion02_ArquitecturaSw_2025.pdf" data-title="ESTÁNDARES INTERNACIONALES"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a>
+                <a class="btn-solid" href="assets/pdfs/Sesion02_ArquitecturaSw_2025.pdf" download><i class="fa-solid fa-download"></i> Descargar</a>
+              </div>
+            </article>
+            <article class="card">
+              <h4>Estilos Arquitectónicos</h4>
+              <div class="thumb"><img src="assets/img/ESTILO ARQUITECTONICO.jpg" alt="Estilos Arquitectónicos"></div>
+              <div class="actions">
+                <a class="btn-ghost btn-view" href="assets/img/ESTILO ARQUITECTONICO.jpg" data-title="Estilos Arquitectónicos"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a>
+                <a class="btn-solid" href="assets/img/ESTILO ARQUITECTONICO.jpg" download><i class="fa-solid fa-download"></i> Descargar</a>
+              </div>
+            </article>
           </div></div>
         </details>
-
         <!-- Semana 3 -->
         <details class="week">
           <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 3</summary>
@@ -395,6 +409,8 @@
             <article class="card"><h4>Evidencia 2 — Semana 16</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 16"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
           </div></div>
         </details>
+
+        <!-- Duplica más semanas según necesites -->
       </div>
     </div>
   </section>
@@ -411,13 +427,23 @@
     </div>
   </div>
 
-  <!-- ===== OFF-CANVAS ===== -->
-  <div class="oc-overlay" id="oc-overlay" hidden></div>
-  <aside class="oc-panel" id="offcanvas" role="dialog" aria-modal="true" aria-labelledby="oc-title" aria-hidden="true" tabindex="-1">
+  <!-- ===== OFF-CANVAS (HTML corregido) ===== -->
+  <div class="oc-overlay" id="oc-overlay" aria-hidden="true"></div>
+
+  <aside
+    class="oc-panel"
+    id="offcanvas"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="oc-title"
+    aria-hidden="true"
+    tabindex="-1"
+  >
     <div class="oc-header">
       <img class="oc-feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="">
       <button class="oc-close" id="oc-close" aria-label="Cerrar menú"><span aria-hidden="true">✕</span></button>
     </div>
+
     <div class="oc-content">
       <h2 id="oc-title" class="visuallyHidden">Menú principal</h2>
       <a class="oc-link" href="index.html">Inicio</a>
@@ -425,8 +451,9 @@
       <a class="oc-link" href="parcial.html">Parcial</a>
       <a class="oc-link" href="portafolio.html">Portafolio</a>
       <a class="oc-link" href="contacto.html">Contacto</a>
-      <a class="oc-link" href="login.html">Iniciar Sesion</a>
+      <a class="oc-link" href="login.html">Iniciar Sesión</a>
     </div>
+
     <div class="oc-footer">
       <a href="#">Política de Privacidad</a>
       <a href="#">Términos de Uso</a>
@@ -444,74 +471,159 @@
     <section class="foot-center">
       <nav class="menu">
         ENLACES RÁPIDOS
-        <a href="index.html">Inicio</a><a href="perfil.html">Perfil</a><a href="parcial.html">Parcial</a><a href="portafolio.html">Portafolio</a><a href="contacto.html">Contacto</a><a class="oc-link" href="login.html">Iniciar Sesion</a>
-        <div class="select-wrap"><select class="select"><option selected>Sin preferencia(predeterminado)</option><option>Sans Serif</option><option>Serif</option><option>High Contrast</option></select></div>
+        <a href="index.html">Inicio</a><a href="perfil.html">Perfil</a><a href="parcial.html">Parcial</a><a href="portafolio.html">Portafolio</a><a href="contacto.html">Contacto</a><a class="oc-link" href="login.html">Iniciar Sesión</a>
+        <div class="select-wrap"><select class="select"><option selected>Sin preferencia (predeterminado)</option><option>Sans Serif</option><option>Serif</option><option>High Contrast</option></select></div>
       </nav>
     </section>
     <section class="foot-right">
       <h3>Suscribirse</h3>
-      <p>Regístrate para recibir actualizaciones sobre los anuncios, lanzamientos y oportunidades de trabajos.</p>
+      <p>Regístrate para recibir actualizaciones sobre anuncios y lanzamientos.</p>
       <div class="req">* indica un campo requerido</div>
       <label class="label" for="email">Correo electrónico *</label>
       <input class="input" id="email" type="email" required>
-      <div class="check"><span class="box"></span><p>Por favor, haga clic para confirmar su consentimiento para recibir actualizaciones por correo electrónico de nuestra parte. Nota: tiene el derecho de retirar su consentimiento en cualquier momento contactándonos a josuenehemiasatucusi@gmail.com o haciendo clic en el enlace de "cancelar suscripción" en los correos electrónicos que le enviamos. Por favor, revise nuestra <u>política de privacidad</u> para más información sobre cómo procesamos sus datos.</p></div>
+      <div class="check"><span class="box"></span><p>Confirmo mi consentimiento para recibir actualizaciones por correo electrónico. Puedes darte de baja cuando desees.</p></div>
       <button class="submit" type="button">Enviar</button>
     </section>
   </footer>
 
+  <!-- ===== VISOR MODAL (PDF.js) ===== -->
+  <div class="viewer-overlay" id="viewer" aria-hidden="true">
+    <div class="viewer-dialog" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
+      <header class="viewer-head">
+        <div class="viewer-title" id="viewer-title">Vista Previa</div>
+        <div class="viewer-actions">
+          <a id="viewer-open" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir en pestaña</a>
+          <a id="viewer-download" download><i class="fa-solid fa-download"></i> Descargar</a>
+          <button class="viewer-close" id="viewer-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i> Cerrar</button>
+        </div>
+      </header>
+      <div class="viewer-body" id="viewer-body"></div>
+    </div>
+  </div>
+
   <!-- ===== JS ===== -->
   <script>
-    /* Off-canvas */
-    const body=document.body,
-          trigger=document.getElementById('oc-trigger'),
-          overlay=document.getElementById('oc-overlay'),
-          panel=document.getElementById('offcanvas'),
-          btnClose=document.getElementById('oc-close');
+    /* ===== Off-canvas (JS corregido con focus-trap) ===== */
+    const oc = {
+      body: document.body,
+      trigger: document.getElementById('oc-trigger'),
+      overlay: document.getElementById('oc-overlay'),
+      panel: document.getElementById('offcanvas'),
+      closeBtn: document.getElementById('oc-close'),
+      lastFocus: null
+    };
+    const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
-    function closeOC(){
-      body.classList.remove('oc-open');
-      body.style.overflow='';
-      trigger?.setAttribute('aria-expanded','false');
-      panel.setAttribute('aria-hidden','true');
-      overlay.hidden=true;
-      trigger?.focus();
+    function setAriaOpen(isOpen){
+      oc.trigger?.setAttribute('aria-expanded', String(isOpen));
+      oc.panel.setAttribute('aria-hidden', String(!isOpen));
+      oc.overlay.setAttribute('aria-hidden', String(!isOpen));
     }
-    trigger.addEventListener('click',()=>{
-      body.classList.add('oc-open');
-      body.style.overflow='hidden';
-      overlay.hidden=false;
-      panel.removeAttribute('aria-hidden');
-      trigger.setAttribute('aria-expanded','true');
-      btnClose.focus();
-    });
-    btnClose.addEventListener('click',closeOC);
-    overlay.addEventListener('click',closeOC);
+    function trapTab(e){
+      if (!document.body.classList.contains('oc-open') || e.key !== 'Tab') return;
+      const nodes = oc.panel.querySelectorAll(FOCUSABLE);
+      if (!nodes.length) return;
+      const first = nodes[0], last = nodes[nodes.length - 1];
+      if (e.shiftKey && document.activeElement === first){ last.focus(); e.preventDefault(); }
+      else if (!e.shiftKey && document.activeElement === last){ first.focus(); e.preventDefault(); }
+    }
+    function onKeydown(e){
+      if (!document.body.classList.contains('oc-open')) return;
+      if (e.key === 'Escape') closeOC();
+      trapTab(e);
+    }
+    function openOC(){
+      oc.lastFocus = document.activeElement;
+      oc.body.classList.add('oc-open');
+      setAriaOpen(true);
+      const first = oc.panel.querySelector(FOCUSABLE) || oc.closeBtn;
+      (first || oc.panel).focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+    function closeOC(){
+      oc.body.classList.remove('oc-open');
+      setAriaOpen(false);
+      document.removeEventListener('keydown', onKeydown);
+      oc.panel.blur();
+      if (oc.lastFocus && oc.lastFocus.focus) oc.lastFocus.focus();
+    }
 
-    /* Acordeón: solo una semana abierta a la vez */
+    oc.trigger?.addEventListener('click', openOC);
+    oc.closeBtn?.addEventListener('click', closeOC);
+    oc.overlay?.addEventListener('click', closeOC);
+
+    /* ===== Acordeón: una semana abierta ===== */
     document.querySelectorAll('details.week').forEach(d=>{
       d.addEventListener('toggle',()=>{ if(d.open) document.querySelectorAll('details.week').forEach(o=>{ if(o!==d) o.open=false; }); });
     });
 
-    /* Vista previa automática de PDFs en las tarjetas */
+    /* ===== Mini-previews en tarjetas (PDF -> iframe con zoom 75%) ===== */
     document.addEventListener('DOMContentLoaded',()=>{
       document.querySelectorAll('.card').forEach(card=>{
         const viewBtn=card.querySelector('.btn-view');
         const thumb =card.querySelector('.thumb');
         if(!viewBtn || !thumb) return;
-        const href=(viewBtn.getAttribute('href')||'').toLowerCase();
-        if(href.endsWith('.pdf')){
+        const href=(viewBtn.getAttribute('href')||'');
+        if(href.toLowerCase().endsWith('.pdf')){
           thumb.innerHTML='';
           const iframe=document.createElement('iframe');
-          iframe.src=href+'#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
+          iframe.src=new URL(href, window.location.href).toString() + '#zoom=75';
           iframe.className='pdf-viewer';
           iframe.title='Vista previa PDF';
           thumb.appendChild(iframe);
         }
       });
     });
+
+    /* ===== Visor PDF.js (miniaturas + zoom 75%) ===== */
+    const viewer = document.getElementById('viewer');
+    const viewerBody = document.getElementById('viewer-body');
+    const viewerTitle = document.getElementById('viewer-title');
+    const viewerOpen = document.getElementById('viewer-open');
+    const viewerDownload = document.getElementById('viewer-download');
+    const viewerClose = document.getElementById('viewer-close');
+
+    const PDFJS_VIEWER = "https://mozilla.github.io/pdf.js/web/viewer.html";
+    const absUrl = (href)=> new URL(href, window.location.href).toString();
+    const pdfjsUrl = (fileAbs)=> `${PDFJS_VIEWER}?file=${encodeURIComponent(fileAbs)}#pagemode=thumbs&zoom=75`;
+
+    function openViewer(url, title='Vista Previa'){
+      const abs = absUrl(url);
+      const pdfjs = pdfjsUrl(abs);
+      viewerBody.innerHTML='';
+      viewerTitle.textContent = title || 'Vista Previa';
+      viewerOpen.href = pdfjs;     // abre el visor PDF.js
+      viewerDownload.href = abs;   // descarga original
+      const iframe = document.createElement('iframe');
+      iframe.src = abs.toLowerCase().endsWith('.pdf') ? pdfjs : abs;
+      iframe.title = 'Visor';
+      viewerBody.appendChild(iframe);
+      viewer.classList.add('open');
+      viewer.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+      viewerClose.focus();
+    }
+    function closeViewer(){
+      viewer.classList.remove('open');
+      viewer.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+      viewerBody.innerHTML='';
+    }
+    document.addEventListener('click',(e)=>{
+      const a = e.target.closest('a.btn-view');
+      if(!a) return;
+      e.preventDefault();
+      const url = a.getAttribute('href');
+      const title = a.getAttribute('data-title') || a.closest('.card')?.querySelector('h4')?.textContent || 'Vista Previa';
+      openViewer(url, title);
+    });
+    viewerClose.addEventListener('click', closeViewer);
+    viewer.addEventListener('click', (e)=>{ if(e.target===viewer) closeViewer(); });
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape' && viewer.classList.contains('open')) closeViewer(); });
   </script>
-<script type="module" src="usermenu.js"></script>
-<script src="offcanvas.js" defer></script>
-  <style>.visuallyHidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}</style>
+
+  <!-- (Opcional) tus scripts -->
+  <script type="module" src="usermenu.js"></script>
+  <script src="offcanvas.js" defer></script>
 </body>
 </html>
