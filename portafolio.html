@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portafolio — Blue Origin Replica</title>
+
+  <link rel="icon" href="assets/img/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://d1o72l87sylvqg.cloudfront.net" crossorigin>
+
+  <!-- Font Awesome por CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{--blue:#0033DD;--blue-dark:#062dc7;--white:#fff;--foot-left:#1b1b1b;--foot-right:#3b3b3b;--line:#2b2b2b}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
+
+    /* ===== CURSORES / INTERACTIVOS ===== */
+    a,
+    button,
+    [role="button"],
+    .cta,
+    .burger,
+    .translate-button,
+    .icons a,
+    .oc-close,
+    .oc-link,
+    .oc-overlay,
+    .btn,
+    .btn-ghost,
+    .btn-solid,
+    .btn-view,
+    .submit,
+    .week > summary {
+      cursor: pointer;
+    }
+    input,textarea,select { cursor: text; }
+    /* Si quieres usar un cursor personalizado, descomenta y ajusta:
+    a,button,[role="button"],.cta,.burger,.translate-button,.icons a,.oc-close,.oc-link,.oc-overlay,.btn,.btn-ghost,.btn-solid,.btn-view,.submit,.week>summary {
+      cursor: url('assets/img/tu-cursor.png') 12 12, pointer;
+    } */
+
+    /* HEADER */
+    .topbar{
+      position:sticky;top:0;z-index:1000;background:var(--blue);
+      height:96px;display:flex;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)
+    }
+    /* A los cantos con 30px (igual que PARCIAL) */
+    .nav{
+      width:100%; margin:0; padding:0 30px; height:96px;
+      display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px
+    }
+    .brand img{height:52px;width:auto;display:block}
+    .nav-center{justify-self:center;display:flex;gap:54px;text-transform:uppercase;letter-spacing:.2em;font-weight:800;font-size:13px}
+    .nav-center a{color:rgba(255,255,255,.95);text-decoration:none}
+    .nav-center a:hover{color:#fff}
+    .nav-right{justify-self:end;display:flex;gap:18px;align-items:center}
+    /* Se ha eliminado el texto "Translate" y se ha aumentado el tamaño del ícono */
+    .translate-button{background-color:#0033DD;border:none;border-radius:5px;padding:10px 20px;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;gap:20px;}
+    .translate-button svg{ width:30px; height:30px; fill:white;}
+    .cta{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:8px;background:#fff;color:#0033dd;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:12px;border:1px solid rgba(0,0,0,.06);text-decoration:none}
+    .burger{width:42px;height:42px;background:transparent;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;border:none}
+    .burger i,.burger::before{content:"";display:block;width:35px;height:5px;background:#fff;border-radius:2px}
+    .burger::after{display:none}
+    @media (max-width:1200px){.nav-center{display:none}}
+
+    /* ===== HERO ===== */
+    .hero{height:526px;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#000}
+    .hero::before{content:"";position:absolute;inset:0;background:url("https://midu.dev/courses/ultimas-novedades-javascript.webp") center/cover no-repeat}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.84)0%,rgba(0,0,0,.55)50%,rgba(0,0,0,.28)100%)}
+    .hero-inner{position:relative;z-index:1;width:100%;max-width:1200px;padding:80px 22px}
+    .kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:800;color:rgba(255,255,255,.8);margin-bottom:8px}
+    h1{margin:0;text-transform:uppercase;font-weight:800;font-size:clamp(34px,5vw,60px)}
+    .ns{display:block;font-weight:900;letter-spacing:.06em;font-size:clamp(40px,8vw,80px);margin:.1em 0 .6em}
+    .btn{color:#fff;text-decoration:none;border:2px solid rgba(255,255,255,.85);padding:12px 16px;border-radius:8px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;display:inline-block}
+    .btn:hover{background:#fff;color:#0033dd}
+
+    /* ===== OFF-CANVAS ===== */
+    .oc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:saturate(130%) blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;}
+    .oc-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,88vw);background:#2e2e2e;color:#fff;transform:translateX(100%);transition:transform .28s ease;z-index:1300;display:flex;flex-direction:column;box-shadow:-8px 0 22px rgba(0,0,0,.45);}
+    .oc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+    .oc-feather{height:28px}
+    .oc-close{width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center;}
+    .oc-content{padding:10px 20px 24px;overflow:auto}
+    .oc-link{display:block;padding:12px 2px;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08);}
+    .oc-link:hover{background:#3a3a3a}
+    .oc-footer{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:10px;flex-wrap:wrap}
+    .oc-footer a{color:#fff;text-decoration:none;font-size:13px;opacity:.9}
+    .oc-footer a:hover{opacity:1;text-decoration:underline}
+    .oc-open .oc-overlay{opacity:1;pointer-events:auto}
+    .oc-open .oc-panel{transform:translateX(0)}
+
+    /* ===== FOOTER ===== */
+    footer{display:grid;grid-template-columns:45% 22% 33%;height:635px;background:linear-gradient(90deg,var(--foot-left)0 67.6%,var(--foot-right)67.6% 100%);color:#fff;border-top:1px solid #232323}
+    .foot-left{padding:80px 40px 40px 120px;display:flex;flex-direction:column;justify-content:center}
+    .feather{width:340px;max-width:90%;margin:0 0 28px 0;filter:brightness(1.05)}
+    .legal{margin-top:8px;font-size:14px;color:#d9d9d9}
+    .legal-links{margin-top:18px;display:flex;gap:24px}
+    .legal-links a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px;font-size:14px}
+    .legal-links a:hover{border-bottom-color:#fff}
+    .foot-center{position:relative;padding:60px 40px 60px 0}
+    .foot-center::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:1px;background:var(--line)}
+    .menu{padding-left:40px;display:flex;flex-direction:column;gap:26px}
+    .menu a{color:#fff;text-decoration:none;font-size:16px;letter-spacing:.04em}
+    .menu a:hover{text-decoration:underline}
+    .select-wrap{margin-top:6px;width:330px;position:relative}
+    .select{width:100%;appearance:none;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;padding:12px 42px 12px 16px;font-size:14px}
+    .select-wrap::after{content:"▾";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:16px;color:#fff}
+    .foot-right{background:var(--foot-right);padding:60px 56px;display:flex;flex-direction:column;gap:14px}
+    .foot-right h3{font-size:22px;font-weight:800;margin-bottom:6px}
+    .foot-right p{color:#e1e1e1;font-size:15px;line-height:1.6}
+    .req{color:#ccc;font-size:13px;margin:2px 0 6px}
+    .label{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin:10px 0 6px}
+    .input{width:min(740px,100%);height:46px;background:transparent;border:2px solid #fff;border-radius:4px;color:#fff;padding:0 10px;font-size:15px}
+    .check{display:flex;align-items:flex-start;gap:12px;margin-top:12px}
+    .box{width:18px;height:18px;border:2px solid #fff;background:transparent;display:inline-block;flex-shrink:0}
+    .check p{color:#e1e1e1;font-size:14px;line-height:1.6}
+    .submit{align-self:flex-start;margin-top:14px;background:transparent;color:#fff;border:2px solid #fff;border-radius:4px;padding:8px 14px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:13px;cursor:pointer}
+    .submit:hover{background:#fff;color:#000}
+    @media(max-width:1100px){
+      footer{grid-template-columns:1fr;height:auto}
+      .foot-center::before{display:none}
+      .menu{padding-left:0}
+      .foot-left,.foot-center,.foot-right{padding:28px 22px}
+      .feather{width:220px}
+    }
+
+    /* ===== PORTAFOLIO POR SEMANAS ===== */
+    .weeks{background:#fff;color:#111;padding:56px 22px 88px}
+    .weeks .wrap{max-width:1200px;margin:0 auto}
+    .weeks h2{color:#0e0e0e;text-align:center;font-size:clamp(30px,5vw,52px);font-weight:900;margin:0 0 22px}
+    .weeks .lead{color:#333;text-align:center;margin:0 auto 24px;max-width:780px}
+    .accordion{display:grid;gap:18px;margin-top:10px}
+    .week{border:1px solid rgba(0,0,0,.08);border-radius:14px;overflow:hidden;background:#101217}
+    .week>summary{display:flex;align-items:center;gap:12px;list-style:none;background:#4d2ca9;padding:16px 18px;font-weight:900;letter-spacing:.02em;color:#e9e9ff;font-size:18px}
+    .week>summary::-webkit-details-marker{display:none}
+    .week .badge{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#001a22;color:#00e5ff;font-size:16px}
+    .panel{padding:18px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;align-items:stretch}
+    .card{background:#171a1f;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;color:#e8eaf0}
+    .card h4{font-size:16px;line-height:1.35}
+    .thumb{background:#0f1117;border:1px dashed rgba(255,255,255,.12);border-radius:10px;height:220px;display:grid;place-items:center;overflow:hidden}
+    .thumb img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+    .thumb .pdf{font-size:74px;color:#ff5252;opacity:.95}
+    .thumb iframe.pdf-viewer{width:100%;height:100%;border:0;border-radius:10px;background:#0f1117}
+    .actions{margin-top:auto;display:grid;gap:10px}
+    .btn-ghost,.btn-solid{height:44px;border-radius:10px;font-weight:800;letter-spacing:.05em;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+    .btn-ghost{border:2px solid rgba(255,255,255,.12);color:#e8eaf0;background:#1a1f27}
+    .btn-ghost:hover{border-color:rgba(255,255,255,.22)}
+    .btn-solid{border:0;background:var(--blue);color:#fff}
+    .btn-solid:hover{filter:brightness(1.06)}
+    .btn-view{background:#00d27a;color:#001b10}
+
+    .social-bar{background:var(--blue);padding:18px 20px;display:flex;justify-content:center;align-items:center;gap:22px}
+    .social-bar span{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800}
+    .icons{display:flex;gap:18px;align-items:center}
+    .icons a{width:34px;height:34px;border:2px solid #fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:18px;text-decoration:none}
+
+    .visuallyHidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <img src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-blue-origin-tagline-optimized.svg" alt="BLUE ORIGIN">
+      </a>
+      <div class="nav-center">
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="parcial.html">Parcial</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="nav-right">
+        <button type="button" class="translate-button" aria-label="Translate">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-labelledby="translateIcon">
+            <title id="translateIcon">Translate</title>
+            <path d="M3 5h4m0 0h4M7 5V3m-4 9c5.4-1.5 6.6-7 6.6-7m-4 3c1 1.5 2.7 3.2 5.4 4m-8 3v2c0 1.1.9 2 2 2h4m0 0-3-2v4l3-2ZM21 9V7a2 2 0 0 0-2-2h-4m0 0 3 2V3l-3 2Zm6 16-4-9-4 9m.9-2H20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <!-- Botón convertido a enlace -->
+        <a class="cta" href="login.html">Iniciar sesión</a>
+        <button class="burger" id="oc-trigger" aria-haspopup="dialog" aria-controls="offcanvas" aria-expanded="false">
+          <span class="visuallyHidden">Main menu</span><i></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <main class="hero" aria-label="Portafolio">
+    <div class="hero-inner">
+      <div class="kicker">Mis Proyectos</div>
+      <h1>Portafolio</h1>
+      <strong class="ns">Trabajos Destacados</strong>
+      <p>Aquí puedes mostrar tus proyectos, piezas gráficas, enlaces, capturas de trabajo o diseños realizados—todo en un mismo espacio visual y organizado.</p>
+      <a class="btn" href="index.html">Volver al Inicio</a>
+    </div>
+  </main>
+
+  <!-- ===== PORTAFOLIO POR SEMANAS ===== -->
+  <section class="weeks" id="por-semanas">
+    <div class="wrap">
+      <h2>Portafolio Organizado por Semanas</h2>
+      <p class="lead">Sube aquí tus evidencias por semana: PDFs, imágenes, enlaces a Drive o a repositorios.</p>
+
+      <div class="accordion">
+        <!-- Semana 1 -->
+        <details class="week" open>
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 1</summary>
+          <div class="panel"><div class="cards">
+
+            <article class="card">
+              <h4>Sílabo del curso</h4>
+              <div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div>
+              <div class="actions">
+                <a class="btn-ghost btn-view" href="assets/pdfs/1757563954874_VIII_ArquitecturaDeSoftware.pdf" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-up-right-from-square"></i> Ver archivo
+                </a>
+                <a class="btn-solid" href="assets/pdfs/1757563954874_VIII_ArquitecturaDeSoftware.pdf" download>
+                  <i class="fa-solid fa-download"></i> Descargar
+                </a>
+              </div>
+            </article>
+
+            <article class="card">
+              <h4>Clases (PDF)</h4>
+              <div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div>
+              <div class="actions">
+                <a class="btn-ghost btn-view" href="assets/pdfs/Clases.pdf" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-up-right-from-square"></i> Ver archivo
+                </a>
+                <a class="btn-solid" href="assets/pdfs/Clases.pdf" download>
+                  <i class="fa-solid fa-download"></i> Descargar
+                </a>
+              </div>
+            </article>
+
+            <article class="card">
+              <h4>Imagen de UPLA</h4>
+              <div class="thumb"><img src="assets/img/semana1Trabajo.png" alt="Imagen UPLA"></div>
+              <div class="actions">
+                <a class="btn-ghost btn-view" href="assets/img/semana1Trabajo.png" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-up-right-from-square"></i> Ver archivo
+                </a>
+                <a class="btn-solid" href="assets/img/semana1Trabajo.png" download>
+                  <i class="fa-solid fa-download"></i> Descargar
+                </a>
+              </div>
+            </article>
+
+          </div></div>
+        </details>
+
+        <!-- Semana 2 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 2</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Fundamentos de Arquitecuta de Software</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/Actividad02_ArquitecturaSw_2025.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/Actividad02_ArquitecturaSw_2025.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>ESTÁNDARES INTERNACIONALES</h4><div class="thumb"><img src="assets/pdfs/Sesion02_ArquitecturaSw_2025.pdf" alt="Evidencia 1 semana 2"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/Sesion02_ArquitecturaSw_2025.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/Sesion02_ArquitecturaSw_2025.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Estilos Arquitectonicos</h4><div class="thumb"><img src="assets/img/ESTILO ARQUITECTONICO.jpg" alt="Evidencia 2 semana 2"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/ESTILO ARQUITECTONICO.jpg" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/ESTILO ARQUITECTONICO.jpg" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+
+        <!-- Semana 3 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 3</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 3</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana3/actividad-semana3.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana3/actividad-semana3.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 3</h4><div class="thumb"><img src="assets/img/semana3/evidencia1.png" alt="Evidencia 1 semana 3"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana3/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana3/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 3</h4><div class="thumb"><img src="assets/img/semana3/evidencia2.png" alt="Evidencia 2 semana 3"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana3/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana3/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+
+        <!-- Semana 4 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 4</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 4</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 4</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 4"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 4</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 4"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+
+        <!-- Semana 5 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 5</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 5</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 5</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 5"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 5</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 5"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+
+        <!-- Semana 6 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 6</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 6</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 6</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 6"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 6</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 6"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+
+        <!-- Semana 7 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 7</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 7</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 7</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 7"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 7</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 7"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+
+        <!-- Semana 8 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 8</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 8</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 8</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 8"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 8</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 8"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+
+        <!-- Semana 9 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 9</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 9</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 9</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 9"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 9</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 9"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+        <!-- Semana 10 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 10</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 10</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 10</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 10"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 10</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 10"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+        <!-- Semana 11 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 11</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 11</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 11</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 11"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 11</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 11"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+        <!-- Semana 12 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 12</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 12</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 12</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 12"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 12</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 12"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details><!-- Semana 13 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 13</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 13</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 13</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 13"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 13</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 13"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details><!-- Semana 14 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 14</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 14</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 14</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 14"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 14</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 14"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details><!-- Semana 14 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 15</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 15</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 15</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 15"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 15</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 15"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details><!-- Semana 16 -->
+        <details class="week">
+          <summary><span class="badge"><i class="fa-solid fa-calendar-week"></i></span> Semana 16</summary>
+          <div class="panel"><div class="cards">
+            <article class="card"><h4>Actividad PDF — Semana 16</h4><div class="thumb"><i class="fa-solid fa-file-pdf pdf"></i></div><div class="actions"><a class="btn-ghost btn-view" href="assets/pdfs/semana4/actividad-semana4.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/pdfs/semana4/actividad-semana4.pdf" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 1 — Semana 16</h4><div class="thumb"><img src="assets/img/semana4/evidencia1.png" alt="Evidencia 1 semana 16"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia1.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia1.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+            <article class="card"><h4>Evidencia 2 — Semana 16</h4><div class="thumb"><img src="assets/img/semana4/evidencia2.png" alt="Evidencia 2 semana 16"></div><div class="actions"><a class="btn-ghost btn-view" href="assets/img/semana4/evidencia2.png" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Ver archivo</a><a class="btn-solid" href="assets/img/semana4/evidencia2.png" download><i class="fa-solid fa-download"></i> Descargar</a></div></article>
+          </div></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOCIAL BAR ===== -->
+  <div class="social-bar">
+    <span>SÍGUENOS EN NUESTRAS REDES</span>
+    <div class="icons">
+      <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <!-- ===== OFF-CANVAS ===== -->
+  <div class="oc-overlay" id="oc-overlay" hidden></div>
+  <aside class="oc-panel" id="offcanvas" role="dialog" aria-modal="true" aria-labelledby="oc-title" aria-hidden="true" tabindex="-1">
+    <div class="oc-header">
+      <img class="oc-feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="">
+      <button class="oc-close" id="oc-close" aria-label="Cerrar menú"><span aria-hidden="true">✕</span></button>
+    </div>
+    <div class="oc-content">
+      <h2 id="oc-title" class="visuallyHidden">Menú principal</h2>
+      <a class="oc-link" href="index.html">Inicio</a>
+      <a class="oc-link" href="perfil.html">Perfil</a>
+      <a class="oc-link" href="parcial.html">Parcial</a>
+      <a class="oc-link" href="portafolio.html">Portafolio</a>
+      <a class="oc-link" href="contacto.html">Contacto</a>
+      <a class="oc-link" href="login.html">Iniciar Sesion</a>
+    </div>
+    <div class="oc-footer">
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Términos de Uso</a>
+      <a href="#">Accesibilidad</a>
+    </div>
+  </aside>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <section class="foot-left">
+      <img class="feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="Blue Origin Feather">
+      <div class="legal">© 2025 BLUE ORIGIN</div>
+      <div class="legal-links"><a href="#">Política de Privacidad</a><a href="#">Términos de Uso</a></div>
+    </section>
+    <section class="foot-center">
+      <nav class="menu">
+        ENLACES RÁPIDOS
+        <a href="index.html">Inicio</a><a href="perfil.html">Perfil</a><a href="parcial.html">Parcial</a><a href="portafolio.html">Portafolio</a><a href="contacto.html">Contacto</a><a class="oc-link" href="login.html">Iniciar Sesion</a>
+        <div class="select-wrap"><select class="select"><option selected>Sin preferencia(predeterminado)</option><option>Sans Serif</option><option>Serif</option><option>High Contrast</option></select></div>
+      </nav>
+    </section>
+    <section class="foot-right">
+      <h3>Suscribirse</h3>
+      <p>Regístrate para recibir actualizaciones sobre los anuncios, lanzamientos y oportunidades de trabajos.</p>
+      <div class="req">* indica un campo requerido</div>
+      <label class="label" for="email">Correo electrónico *</label>
+      <input class="input" id="email" type="email" required>
+      <div class="check"><span class="box"></span><p>Por favor, haga clic para confirmar su consentimiento para recibir actualizaciones por correo electrónico de nuestra parte. Nota: tiene el derecho de retirar su consentimiento en cualquier momento contactándonos a josuenehemiasatucusi@gmail.com o haciendo clic en el enlace de "cancelar suscripción" en los correos electrónicos que le enviamos. Por favor, revise nuestra <u>política de privacidad</u> para más información sobre cómo procesamos sus datos.</p></div>
+      <button class="submit" type="button">Enviar</button>
+    </section>
+  </footer>
+
+  <!-- ===== JS ===== -->
+  <script>
+    /* Off-canvas */
+    const body=document.body,
+          trigger=document.getElementById('oc-trigger'),
+          overlay=document.getElementById('oc-overlay'),
+          panel=document.getElementById('offcanvas'),
+          btnClose=document.getElementById('oc-close');
+
+    function closeOC(){
+      body.classList.remove('oc-open');
+      body.style.overflow='';
+      trigger?.setAttribute('aria-expanded','false');
+      panel.setAttribute('aria-hidden','true');
+      overlay.hidden=true;
+      trigger?.focus();
+    }
+    trigger.addEventListener('click',()=>{
+      body.classList.add('oc-open');
+      body.style.overflow='hidden';
+      overlay.hidden=false;
+      panel.removeAttribute('aria-hidden');
+      trigger.setAttribute('aria-expanded','true');
+      btnClose.focus();
+    });
+    btnClose.addEventListener('click',closeOC);
+    overlay.addEventListener('click',closeOC);
+
+    /* Acordeón: solo una semana abierta a la vez */
+    document.querySelectorAll('details.week').forEach(d=>{
+      d.addEventListener('toggle',()=>{ if(d.open) document.querySelectorAll('details.week').forEach(o=>{ if(o!==d) o.open=false; }); });
+    });
+
+    /* Vista previa automática de PDFs en las tarjetas */
+    document.addEventListener('DOMContentLoaded',()=>{
+      document.querySelectorAll('.card').forEach(card=>{
+        const viewBtn=card.querySelector('.btn-view');
+        const thumb =card.querySelector('.thumb');
+        if(!viewBtn || !thumb) return;
+        const href=(viewBtn.getAttribute('href')||'').toLowerCase();
+        if(href.endsWith('.pdf')){
+          thumb.innerHTML='';
+          const iframe=document.createElement('iframe');
+          iframe.src=href+'#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
+          iframe.className='pdf-viewer';
+          iframe.title='Vista previa PDF';
+          thumb.appendChild(iframe);
+        }
+      });
+    });
+  </script>
+<script type="module" src="usermenu.js"></script>
+<script src="offcanvas.js" defer></script>
+  <style>.visuallyHidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}</style>
+</body>
+</html>

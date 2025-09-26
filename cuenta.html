@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mi Cuenta — Blue Origin Replica</title>
+
+<link rel="icon" href="assets/img/logo.png" type="image/png" />
+<link rel="preconnect" href="https://d1o72l87sylvqg.cloudfront.net" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+  :root{
+    --blue:#0033DD; --blue-dark:#062dc7; --white:#fff;
+    --foot-left:#1b1b1b; --foot-right:#3b3b3b; --line:#2b2b2b;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:0 22px}
+  .visuallyHidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+  /* HEADER (igual a index) */
+  .topbar{position:sticky;top:0;z-index:1000;background:var(--blue);
+    height:96px;display:flex;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .nav{width:100%;margin:0;padding:0 30px;height:96px;display:grid;
+    grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px}
+  .brand img{height:52px;width:auto;display:block}
+  .nav-center{justify-self:center;display:flex;gap:54px;text-transform:uppercase;letter-spacing:.2em;font-weight:800;font-size:13px}
+  .nav-center a{color:rgba(255,255,255,.95);text-decoration:none}
+  .nav-center a:hover{color:#fff}
+  .nav-right{justify-self:end;display:flex;gap:18px;align-items:center}
+  .translate-button{background-color:#0033DD;border:none;border-radius:5px;padding:10px 20px;color:white;font-size:16px;display:flex;align-items:center;gap:20px;}
+  .translate-button svg{ width:30px; height:30px; fill:white;}
+  .cta{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:8px;background:#fff;color:#0033dd;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:12px;border:1px solid rgba(0,0,0,.06);text-decoration:none}
+  .burger{width:42px;height:42px;background:transparent;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;border:none}
+  .burger i,.burger::before{content:"";display:block;width:35px;height:5px;background:#fff;border-radius:2px}
+  .burger::after{display:none}
+  @media (max-width:1200px){.nav-center{display:none}}
+
+  /* CONTENIDO: MI CUENTA */
+  .page{max-width:1240px;margin:40px auto;padding:0 22px}
+  .hello{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+  .avatar{width:72px;height:72px;border-radius:50%;background:#e5e7eb;color:#374151;
+    display:grid;place-items:center;font-weight:900;font-size:22px;border:6px solid rgba(255,255,255,.12)}
+  .hello h1{font-size:46px;letter-spacing:.01em}
+
+  .grid{display:grid;grid-template-columns:280px 1fr;gap:28px}
+  .sidebar{background:#0b1024;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px}
+  .side-item{display:block;padding:12px 14px;border-radius:10px;color:#e5e7eb;font-weight:700}
+  .side-item:hover{background:rgba(255,255,255,.08)}
+  .side-item.active{background:linear-gradient(90deg,#ff2740 0%, transparent 40%);border-left:3px solid #ff2740}
+
+  .panel{display:grid;grid-template-columns:1fr 360px;gap:18px}
+  .card{background:#0b1024;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px}
+  .card h3{margin:0 0 12px 0}
+  .table{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.1)}
+  .label{color:#cbd5e1;font-weight:700}
+  .value{color:#b7c3d7}
+  .btn{background:#ff2740;color:#fff;border:none;border-radius:20px;padding:10px 16px;font-weight:900;cursor:pointer}
+
+  @media (max-width:980px){ .grid{grid-template-columns:1fr}.panel{grid-template-columns:1fr} }
+
+  /* SOCIAL BAR */
+  .social-bar{background:var(--blue);padding:18px 20px;display:flex;justify-content:center;align-items:center;gap:22px}
+  .social-bar span{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800}
+  .icons{display:flex;gap:18px;align-items:center}
+  .icons a{width:34px;height:34px;border:2px solid #fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none}
+
+  /* OFF-CANVAS */
+  .oc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:saturate(130%) blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;}
+  .oc-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,88vw);background:#2e2e2e;color:#fff;transform:translateX(100%);transition:transform .28s ease;z-index:1300;display:flex;flex-direction:column;box-shadow:-8px 0 22px rgba(0,0,0,.45);}
+  .oc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+  .oc-feather{height:28px}
+  .oc-close{width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center;}
+  .oc-content{padding:10px 20px 24px;overflow:auto}
+  .oc-link{display:block;padding:12px 2px;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08);}
+  .oc-link:hover{background:#3a3a3a}
+  .oc-footer{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:10px;flex-wrap:wrap}
+  .oc-footer a{color:#fff;text-decoration:none;font-size:13px;opacity:.9}
+  .oc-footer a:hover{opacity:1;text-decoration:underline}
+  .oc-open .oc-overlay{opacity:1;pointer-events:auto}
+  .oc-open .oc-panel{transform:translateX(0)}
+
+  /* FOOTER (igual a index) */
+  footer{display:grid;grid-template-columns:45% 22% 33%;height:635px;background:linear-gradient(90deg,var(--foot-left)0 67.6%,var(--foot-right)67.6% 100%);color:#fff;border-top:1px solid #232323}
+  .foot-left{padding:80px 40px 40px 120px;display:flex;flex-direction:column;justify-content:center}
+  .feather{width:340px;max-width:90%;margin:0 0 28px 0;filter:brightness(1.05)}
+  .legal{margin-top:8px;font-size:14px;color:#d9d9d9}
+  .legal-links{margin-top:18px;display:flex;gap:24px}
+  .legal-links a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px;font-size:14px}
+  .legal-links a:hover{border-bottom-color:#fff}
+  .foot-center{position:relative;padding:60px 40px 60px 0}
+  .foot-center::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:1px;background:var(--line)}
+  .menu{padding-left:40px;display:flex;flex-direction:column;gap:26px}
+  .menu a{color:#fff;text-decoration:none;font-size:16px;letter-spacing:.04em}
+  .menu a:hover{text-decoration:underline}
+  .select-wrap{margin-top:6px;width:330px;position:relative}
+  .select{width:100%;appearance:none;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;padding:12px 42px 12px 16px;font-size:14px}
+  .select-wrap::after{content:"▾";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:16px;color:#fff}
+  .foot-right{background:var(--foot-right);padding:60px 56px;display:flex;flex-direction:column;gap:14px}
+  .foot-right h3{font-size:22px;font-weight:800;margin-bottom:6px}
+  .foot-right p{color:#e1e1e1;font-size:15px;line-height:1.6}
+  .req{color:#ccc;font-size:13px;margin:2px 0 6px}
+  .label{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin:10px 0 6px}
+  .input{width:min(740px,100%);height:46px;background:transparent;border:2px solid #fff;border-radius:4px;color:#fff;padding:0 10px;font-size:15px}
+  .check{display:flex;align-items:flex-start;gap:12px;margin-top:12px}
+  .box{width:18px;height:18px;border:2px solid #fff;background:transparent;display:inline-block;flex-shrink:0}
+  .check p{color:#e1e1e1;font-size:14px;line-height:1.6}
+  .submit{align-self:flex-start;margin-top:14px;background:transparent;color:#fff;border:2px solid #fff;border-radius:4px;padding:8px 14px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:13px}
+  .submit:hover{background:#fff;color:#000}
+  @media(max-width:1100px){
+    footer{grid-template-columns:1fr;height:auto}
+    .foot-center::before{display:none}
+    .menu{padding-left:0}
+    .foot-left,.foot-center,.foot-right{padding:28px 22px}
+    .feather{width:220px}
+  }
+</style>
+
+<!-- Módulo 1: protección (si no hay sesión, redirige a login) -->
+<script type="module">
+  import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+  const cfg = {
+    apiKey:"AIzaSyCo3llrVhgJroj1NcM4tGiKOJQVwRIx4FU",
+    authDomain:"login-form-6f237.firebaseapp.com",
+    projectId:"login-form-6f237",
+    storageBucket:"login-form-6f237.firebasestorage.app",
+    messagingSenderId:"711287319130",
+    appId:"1:711287319130:web:92eec814baf16a665d8663",
+    measurementId:"G-H6H8BCWJ35"
+  };
+  const app = getApps().length ? getApp() : initializeApp(cfg);
+  const auth = getAuth(app);
+  const cached = localStorage.getItem('loggedInUserId');
+  const goLogin = ()=>window.location.replace('login.html');
+  if(!cached){
+    onAuthStateChanged(auth,(u)=>{ if(!u) goLogin(); else localStorage.setItem('loggedInUserId',u.uid); });
+  }
+</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <img src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-blue-origin-tagline-optimized.svg" alt="BLUE ORIGIN">
+    </a>
+    <div class="nav-center">
+      <a href="index.html">Inicio</a>
+      <a href="perfil.html">Perfil</a>
+      <a href="parcial.html">Parcial</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="nav-right">
+      <button type="button" class="translate-button" aria-label="Traducir">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-labelledby="translateIcon">
+          <title id="translateIcon">Translate</title>
+          <path d="M3 5h4m0 0h4M7 5V3m-4 9c5.4-1.5 6.6-7 6.6-7m-4 3c1 1.5 2.7 3.2 5.4 4m-8 3v2c0 1.1.9 2 2 2h4m0 0-3-2v4l3-2ZM21 9V7a2 2 0 0 0-2-2h-4m0 0 3 2V3l-3 2Zm6 16-4-9-4 9m.9-2H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+      <a class="cta" href="login.html">Iniciar sesión</a>
+      <button class="burger" id="oc-trigger" aria-haspopup="dialog" aria-controls="offcanvas" aria-expanded="false">
+        <span class="visuallyHidden">Main menu</span><i></i>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- CONTENIDO -->
+<main class="page">
+  <div class="hello">
+    <div class="avatar" id="cuentaAvatar">U</div>
+    <div>
+      <div style="opacity:.9;font-weight:800;letter-spacing:.06em">¡Hola!</div>
+      <h1>Perfil</h1>
+    </div>
+  </div>
+
+  <div class="grid">
+    <aside class="sidebar">
+      <a class="side-item active" href="cuenta.html">Perfil</a>
+      <a class="side-item" href="#">Direcciones</a>
+      <a class="side-item" href="#">Pedidos</a>
+      <a class="side-item" href="#">Tarjetas de crédito</a>
+      <a class="side-item" href="#">Autenticación</a>
+      <a class="side-item" id="cuentaSalir" href="#">Salir</a>
+    </aside>
+
+    <section class="panel">
+      <article class="card">
+        <h3>Datos personales</h3>
+        <div class="table">
+          <div class="row"><div class="label">Nombre</div><div class="value" id="valNombre">—</div></div>
+          <div class="row"><div class="label">Apellido</div><div class="value" id="valApellido">—</div></div>
+          <div class="row"><div class="label">Email</div><div class="value" id="valEmail">—</div></div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-top:12px">
+          <button class="btn" type="button">Editar</button>
+        </div>
+      </article>
+
+      <aside class="card">
+        <h3>Boletín informativo</h3>
+        <label style="display:flex;gap:10px;align-items:center;color:#d1d5db">
+          <input type="checkbox" id="chkNews"><span>Quiero recibir promociones.</span>
+        </label>
+      </aside>
+    </section>
+  </div>
+</main>
+
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <span>SIGUENOS EN NUESTRAS REDES</span>
+  <div class="icons">
+    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+  </div>
+</div>
+
+<!-- OFF-CANVAS -->
+<div class="oc-overlay" id="oc-overlay" hidden></div>
+<aside class="oc-panel" id="offcanvas" role="dialog" aria-modal="true" aria-labelledby="oc-title" aria-hidden="true" tabindex="-1">
+  <div class="oc-header">
+    <img class="oc-feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="">
+    <button class="oc-close" id="oc-close" aria-label="Cerrar menú"><span aria-hidden="true">✕</span></button>
+  </div>
+  <div class="oc-content">
+    <h2 id="oc-title" class="visuallyHidden">Menú principal</h2>
+    <a class="oc-link" href="index.html">Inicio</a>
+    <a class="oc-link" href="perfil.html">Perfil</a>
+    <a class="oc-link" href="parcial.html">Parcial</a>
+    <a class="oc-link" href="portafolio.html">Portafolio</a>
+    <a class="oc-link" href="contacto.html">Contacto</a>
+    <a class="oc-link" href="login.html">Iniciar Sesion</a>
+  </div>
+  <div class="oc-footer">
+    <a href="#">Política de Privacidad</a><a href="#">Términos de Uso</a><a href="#">Accesibilidad</a>
+  </div>
+</aside>
+
+<!-- FOOTER -->
+<footer>
+  <section class="foot-left">
+    <img class="feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="Blue Origin Feather">
+    <div class="legal">© 2025 BLUE ORIGIN</div>
+    <div class="legal-links"><a href="#">Política de Privacidad</a><a href="#">Términos de Uso</a></div>
+  </section>
+  <section class="foot-center">
+    <nav class="menu">
+      ENLACES RÁPIDOS
+      <a href="index.html">Inicio</a>
+      <a href="perfil.html">Perfil</a>
+      <a href="parcial.html">Parcial</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="contacto.html">Contacto</a>
+      <a class="oc-link" href="login.html">Iniciar Sesion</a>
+      <div class="select-wrap">
+        <select class="select">
+          <option selected>Sin preferencia(predeterminado)</option>
+          <option>Sans Serif</option><option>Serif</option><option>High Contrast</option>
+        </select>
+      </div>
+    </nav>
+  </section>
+  <section class="foot-right">
+    <h3>Suscribirse</h3>
+    <p>Regístrate para recibir actualizaciones sobre los anuncios, lanzamientos y oportunidades de Trabajos.</p>
+    <div class="req">* indica un campo requerido</div>
+    <label class="label" for="email">Correo electrónico *</label>
+    <input class="input" id="email" type="email" required>
+    <div class="check"><span class="box"></span><p>Puede darse de baja en cualquier momento.</p></div>
+    <button class="submit" type="button">Enviar</button>
+  </section>
+</footer>
+
+<!-- JS off-canvas -->
+<script>
+  const body=document.body,trigger=document.getElementById('oc-trigger'),overlay=document.getElementById('oc-overlay'),panel=document.getElementById('offcanvas'),btnClose=document.getElementById('oc-close');
+  function closeOC(){body.classList.remove('oc-open');body.style.overflow='';trigger?.setAttribute('aria-expanded','false');panel.setAttribute('aria-hidden','true');overlay.hidden=true;trigger?.focus();}
+  trigger?.addEventListener('click',()=>{body.classList.add('oc-open');body.style.overflow='hidden';overlay.hidden=false;panel.removeAttribute('aria-hidden');trigger.setAttribute('aria-expanded','true');btnClose.focus();});
+  btnClose.addEventListener('click',closeOC);overlay.addEventListener('click',closeOC);
+</script>
+
+<!-- Módulo 2: Datos de usuario + Salir (NOMBRES RENOMBRADOS) -->
+<script type="module">
+  import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+  /* Nombres distintos para evitar conflicto con el módulo 1 */
+  const firebaseConfig2 = {
+    apiKey:"AIzaSyCo3llrVhgJroj1NcM4tGiKOJQVwRIx4FU",
+    authDomain:"login-form-6f237.firebaseapp.com",
+    projectId:"login-form-6f237",
+    storageBucket:"login-form-6f237.firebasestorage.app",
+    messagingSenderId:"711287319130",
+    appId:"1:711287319130:web:92eec814baf16a665d8663",
+    measurementId:"G-H6H8BCWJ35"
+  };
+
+  const app2  = getApps().length ? getApp() : initializeApp(firebaseConfig2);
+  const auth2 = getAuth(app2);
+  const db2   = getFirestore(app2);
+
+  async function fill(uid, user){
+    let first='', last='', email=user?.email||'';
+    try{
+      const snap = await getDoc(doc(db2,'users',uid));
+      if(snap.exists()){
+        const d = snap.data();
+        first=(d.firstName||'').trim();
+        last =(d.lastName||'').trim();
+        email=d.email||email;
+      }
+    }catch{}
+    const set=(id,val)=>{const el=document.getElementById(id); if(el) el.textContent = val||'—';};
+    set('valNombre',first); set('valApellido',last); set('valEmail',email);
+    const display=(first||last)?`${first} ${last}`.trim():(email?email.split('@')[0]:'U');
+    const av=document.getElementById('cuentaAvatar'); if(av) av.textContent = display.charAt(0).toUpperCase();
+  }
+
+  onAuthStateChanged(auth2, async (user)=>{
+    const uid = user?.uid || localStorage.getItem('loggedInUserId');
+    if(!uid){ window.location.replace('login.html'); return; }
+    await fill(uid, user);
+    document.getElementById('cuentaSalir')?.addEventListener('click', async (e)=>{
+      e.preventDefault();
+      try{ localStorage.removeItem('loggedInUserId'); await signOut(auth2);}catch{}
+      window.location.href = 'login.html';
+    });
+  });
+</script>
+
+<!-- Menú usuario -->
+<script type="module" src="usermenu.js"></script>
+</body>
+</html>
