@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Perfil — Blue Origin Replica</title>
+
+<link rel="icon" href="assets/img/logo.png" type="image/png" />
+<link rel="preconnect" href="https://d1o72l87sylvqg.cloudfront.net" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+  :root{
+    --blue:#0033DD; --blue-dark:#062dc7; --white:#fff;
+    --foot-left:#1b1b1b; --foot-right:#3b3b3b; --line:#2b2b2b;
+    --orange:#f59e0b; --teal:#06b6d4; --azul:#1d4ed8; --yellow:#facc15;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+  /* Cursores */
+  a,button,[role="button"],.cta,.burger,.translate-button,.btn,.submit,
+  .icons a,.oc-close,.oc-link,.oc-overlay,.panel .cta,.svc a,.svc,.social-bar .icons a{cursor:pointer}
+  input,textarea,select{cursor:text}
+
+  /* ===== HEADER ===== */
+  .topbar{
+    position:sticky; top:0; z-index:1000; background:var(--blue);
+    height:96px; display:flex; align-items:center; box-shadow:0 2px 8px rgba(0,0,0,.25);
+  }
+  .nav{
+    width:100%; margin:0; padding:0 30px; height:96px;
+    display:grid; grid-template-columns:1fr auto 1fr;
+    align-items:center; column-gap:24px;
+  }
+  .brand img{height:52px;width:auto;display:block}
+  .nav-center{
+    justify-self:center; display:flex; gap:54px;
+    text-transform:uppercase; letter-spacing:.2em; font-weight:800; font-size:13px;
+  }
+  .nav-center a{color:rgba(255,255,255,.95); text-decoration:none}
+  .nav-center a:hover{color:#fff}
+
+  /* NUEVO: acciones separadas para que usermenu.js no borre nada */
+  .nav-actions{justify-self:end; display:flex; gap:18px; align-items:center}
+
+  .translate-button{
+    background:#0033DD; border:none; border-radius:5px;
+    padding:10px 20px; color:#fff; display:flex; align-items:center; gap:20px; font-size:16px;
+  }
+  .translate-button svg{width:30px; height:30px; fill:#fff}
+
+  /* solo el login va en el slot */
+  #login-slot .cta{
+    display:inline-flex; align-items:center; justify-content:center;
+    height:42px; padding:0 18px; border-radius:8px;
+    background:#fff; color:#0033dd; font-weight:900;
+    letter-spacing:.2em; text-transform:uppercase; font-size:12px;
+    border:1px solid rgba(0,0,0,.06); text-decoration:none;
+  }
+
+  .burger{
+    width:42px; height:42px; background:transparent; display:flex;
+    align-items:center; justify-content:center; flex-direction:column; gap:6px; border:none;
+  }
+  .burger i,.burger::before{content:""; display:block; width:35px; height:5px; background:#fff; border-radius:2px}
+  .burger::after{display:none}
+
+  /* Oculta el menú del centro recién en móvil */
+  @media (max-width:900px){ .nav-center{ display:none; } }
+
+  /* ===== HERO (ALTO 500) ===== */
+  .hero{height:500px; position:relative; display:flex; align-items:center; overflow:hidden; background:#000}
+  .hero::before{content:""; position:absolute; inset:0; background:url("https://midu.dev/courses/angular-og.webp") center/cover no-repeat}
+  .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.84) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.28) 100%)}
+  .hero-inner{position:relative; z-index:1; width:100%; max-width:1200px; padding:60px 22px}
+  .kicker{font-size:12px; letter-spacing:.22em; text-transform:uppercase; font-weight:800; color:rgba(255,255,255,.8); margin-bottom:8px}
+  h1{margin:0; text-transform:uppercase; font-weight:800; font-size:clamp(34px,5vw,60px)}
+  .ns{display:block; font-weight:900; letter-spacing:.06em; font-size:clamp(40px,8vw,80px); margin:.1em 0 .6em}
+  .btn{color:#fff; text-decoration:none; border:2px solid rgba(255,255,255,.85); padding:12px 16px; border-radius:8px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; display:inline-block}
+  .btn:hover{background:#fff; color:#0033dd}
+
+  /* ===== SOBRE MÍ ===== */
+  .about{background:#f2f3f5;color:#0f172a;padding:54px 0 56px}
+  .about .k{display:block;text-align:center;color:#111;opacity:.85;letter-spacing:.2em;text-transform:uppercase;font-weight:800;margin-bottom:14px}
+  .about h2{font-size:clamp(36px,7vw,76px);line-height:1.05;text-align:center;color:var(--blue);font-weight:900;margin-bottom:12px}
+  .about p{max-width:980px;margin:0 auto;color:#111;opacity:.9;line-height:1.8;font-size:18px;text-align:center}
+
+  /* ===== PANEL + TARJETAS ===== */
+  .features{background:#f2f3f5;padding:12px 0 70px}
+  .grid-2{display:grid;grid-template-columns:1.15fr 1fr;gap:36px}
+  @media (max-width:1020px){.grid-2{grid-template-columns:1fr;gap:24px}}
+
+  .panel{
+    background:var(--blue); color:#fff; border-radius:8px; padding:36px 40px;
+    display:grid; place-items:center; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.12);
+  }
+  .panel .avatar{width:260px;height:260px;border-radius:999px;overflow:hidden;border:14px solid rgba(255,255,255,.2);margin:8px auto 22px}
+  .panel .avatar img{width:100%;height:100%;object-fit:cover}
+  .panel h3{font-size:clamp(28px,4vw,44px);font-weight:800;line-height:1.25;margin:8px 0 18px}
+  .panel .cta{margin-top:6px;display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 24px;border-radius:8px;border:2px solid #fff;background:transparent;color:#fff;text-decoration:none;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+  .panel .cta:hover{background:#fff;color:#0033dd}
+
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  @media (max-width:560px){.svc-grid{grid-template-columns:1fr}}
+  .svc{background:#fff;border-radius:8px;color:#0f172a;padding:36px 32px;min-height:260px;box-shadow:0 14px 40px rgba(0,0,0,.12);display:flex;flex-direction:column;justify-content:space-between}
+  .svc h4{font-size:28px;letter-spacing:.02em;margin:12px 0 6px}
+  .svc a{color:#0f172a;text-decoration:none;border-bottom:2px solid #0f172a;font-weight:800;width:max-content}
+  .svc .bar{height:10px;border-radius:0 0 8px 8px;margin:-26px -32px -36px -32px}
+  .svc.orange .bar{background:var(--orange)} .svc.teal .bar{background:var(--teal)}
+  .svc.azul .bar{background:var(--azul)} .svc.yellow .bar{background:var(--yellow)}
+
+  .svc .thumb{width:84px;height:84px;border-radius:12px;overflow:hidden;background:#fff;border:3px solid;margin-bottom:14px;box-shadow:0 6px 16px rgba(0,0,0,.06);display:inline-flex;align-items:center;justify-content:center}
+  .svc .thumb img{width:100%;height:100%;object-fit:contain;display:block;padding:10px}
+  .svc.orange .thumb{border-color:var(--orange)} .svc.teal .thumb{border-color:var(--teal)}
+  .svc.azul .thumb{border-color:var(--azul)} .svc.yellow .thumb{border-color:var(--yellow)}
+
+  /* ===== SOCIAL BAR ===== */
+  .social-bar{background:var(--blue);padding:18px 20px;display:flex;justify-content:center;align-items:center;gap:22px}
+  .social-bar span{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800}
+  .icons{display:flex;gap:18px;align-items:center}
+  .icons a{width:34px;height:34px;border:2px solid #fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none}
+
+  /* ===== OFF-CANVAS ===== */
+  .oc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:saturate(130%) blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200}
+  .oc-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,88vw);background:#2e2e2e;color:#fff;transform:translateX(100%);transition:transform .28s ease;z-index:1300;display:flex;flex-direction:column;box-shadow:-8px 0 22px rgba(0,0,0,.45)}
+  .oc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .oc-feather{height:28px}
+  .oc-close{width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center}
+  .oc-content{padding:10px 20px 24px;overflow:auto}
+  .oc-link{display:block;padding:12px 2px;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08)}
+  .oc-link:hover{background:#3a3a3a}
+  .oc-footer{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:10px;flex-wrap:wrap}
+  .oc-footer a{color:#fff;text-decoration:none;font-size:13px;opacity:.9}
+  .oc-footer a:hover{opacity:1;text-decoration:underline}
+  .oc-open .oc-overlay{opacity:1;pointer-events:auto}
+  .oc-open .oc-panel{transform:translateX(0)}
+
+  /* ===== FOOTER ===== */
+  footer{display:grid;grid-template-columns:45% 22% 33%;height:635px;background:linear-gradient(90deg,var(--foot-left) 0 67.6%,var(--foot-right) 67.6% 100%);color:#fff;border-top:1px solid #232323}
+  .foot-left{padding:80px 40px 40px 120px;display:flex;flex-direction:column;justify-content:center}
+  .feather{width:340px;max-width:90%;margin:0 0 28px 0;filter:brightness(1.05)}
+  .legal{margin-top:8px;font-size:14px;color:#d9d9d9}
+  .legal-links{margin-top:18px;display:flex;gap:24px}
+  .legal-links a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px;font-size:14px}
+  .legal-links a:hover{border-bottom-color:#fff}
+  .foot-center{position:relative;padding:60px 40px 60px 0}
+  .foot-center::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:1px;background:var(--line)}
+  .menu{padding-left:40px;display:flex;flex-direction:column;gap:26px}
+  .menu a{color:#fff;text-decoration:none;font-size:16px;letter-spacing:.04em}
+  .menu a:hover{text-decoration:underline}
+  .select-wrap{margin-top:6px;width:330px;position:relative}
+  .select{width:100%;appearance:none;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;padding:12px 42px 12px 16px;font-size:14px}
+  .select-wrap::after{content:"▾";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:16px;color:#fff}
+  .foot-right{background:var(--foot-right);padding:60px 56px;display:flex;flex-direction:column;gap:14px}
+  .foot-right h3{font-size:22px;font-weight:800;margin-bottom:6px}
+  .foot-right p{color:#e1e1e1;font-size:15px;line-height:1.6}
+  .req{color:#ccc;font-size:13px;margin:2px 0 6px}
+  .label{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin:10px 0 6px}
+  .input{width:min(740px,100%);height:46px;background:transparent;border:2px solid #fff;border-radius:4px;color:#fff;padding:0 10px;font-size:15px}
+  .check{display:flex;align-items:flex-start;gap:12px;margin-top:12px}
+  .box{width:18px;height:18px;border:2px solid #fff;background:transparent;display:inline-block;flex-shrink:0}
+  .check p{color:#e1e1e1;font-size:14px;line-height:1.6}
+  .submit{align-self:flex-start;margin-top:14px;background:transparent;color:#fff;border:2px solid #fff;border-radius:4px;padding:8px 14px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:13px}
+  .submit:hover{background:#fff;color:#000}
+
+  @media(max-width:1100px){
+    footer{grid-template-columns:1fr;height:auto}
+    .foot-center::before{display:none}
+    .menu{padding-left:0}
+    .foot-left,.foot-center,.foot-right{padding:28px 22px}
+    .feather{width:220px}
+  }
+
+  .visuallyHidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <img src="https://upla.edu.pe/web/wp-content/uploads/2025/06/upla-white.png" alt="BLUE ORIGIN">
+    </a>
+
+    <div class="nav-center">
+      <a href="index.html">Inicio</a>
+      <a href="perfil.html">Perfil</a>
+      <a href="parcial.html">Parcial</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+
+    <!-- Acciones a la derecha (traductor + login-slot + burger) -->
+    <div class="nav-actions">
+      <button type="button" class="translate-button" aria-label="Traducir">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 5h4m0 0h4M7 5V3m-4 9c5.4-1.5 6.6-7 6.6-7m-4 3c1 1.5 2.7 3.2 5.4 4m-8 3v2c0 1.1.9 2 2 2h4m0 0-3-2v4l3-2ZM21 9V7a2 2 0 0 0-2-2h-4m0 0 3 2V3l-3 2Zm6 16-4-9-4 9m.9-2H20" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+
+      <!-- SLOT que usermenu.js puede reemplazar sin tocar lo demás -->
+      <span id="login-slot">
+        <a class="cta" href="login.html">Iniciar sesión</a>
+      </span>
+
+      <button class="burger" id="oc-trigger" aria-haspopup="dialog" aria-controls="offcanvas" aria-expanded="false">
+        <span class="visuallyHidden">Main menu</span><i></i>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<main class="hero" aria-label="Perfil">
+  <div class="hero-inner">
+    <div class="kicker">Sección</div>
+    <h1>Perfil</h1>
+    <strong class="ns">Información del Usuario</strong>
+    <p>Aquí puedes mostrar la información de tu perfil, tu descripción personal, experiencia, o lo que quieras.</p>
+    <a class="btn" href="index.html">Volver al Inicio</a>
+  </div>
+</main>
+
+<!-- UN POCO SOBRE MÍ -->
+<section class="about" aria-labelledby="about-title">
+  <div class="wrap">
+    <span class="k">UN POCO SOBRE MÍ</span>
+    <h2 id="about-title">¿Quién soy yo?</h2>
+    <p>
+      Hola, soy Nehemias Retamozo. Soy un programador con experiencia en diseño y desarrollo web, enfocado en crear interfaces modernas, funcionales y centradas en el usuario. Domino tanto el frontend como el backend, lo que me permite llevar proyectos desde la idea inicial hasta su implementación completa.
+    </p>
+  </div>
+</section>
+
+<!-- PANEL + TARJETAS -->
+<section class="features" aria-label="Servicios">
+  <div class="wrap grid-2">
+    <aside class="panel">
+      <div class="avatar">
+        <img src="https://img.freepik.com/foto-gratis/vista-posterior-programador-trabajando-toda-noche_1098-18697.jpg" alt="Foto de perfil" />
+      </div>
+      <h3>¡Me alegra saber que más de 300 proyectos se realizaron con éxito!</h3>
+      <a class="cta" href="#">Más información</a>
+    </aside>
+
+    <div class="svc-grid">
+      <article class="svc orange">
+        <div>
+          <figure class="thumb"><img src="assets/img/1.png" alt="Diseño gráfico"></figure>
+          <h4>DISEÑO GRÁFICO</h4>
+        </div>
+        <a href="#">MÁS</a>
+        <div class="bar"></div>
+      </article>
+
+      <article class="svc teal">
+        <div>
+          <figure class="thumb"><img src="assets/img/2.png" alt="Diseño web / UI"></figure>
+          <h4>DISEÑO WEB</h4>
+        </div>
+        <a href="#">MÁS</a>
+        <div class="bar"></div>
+      </article>
+
+      <article class="svc azul">
+        <div>
+          <figure class="thumb"><img src="assets/img/3.png" alt="Software"></figure>
+          <h4>SOFTWARE</h4>
+        </div>
+        <a href="#">MÁS</a>
+        <div class="bar"></div>
+      </article>
+
+      <article class="svc yellow">
+        <div>
+          <figure class="thumb"><img src="assets/img/4.png" alt="Solicitud"></figure>
+          <h4>SOLICITUD</h4>
+        </div>
+        <a href="#">MÁS</a>
+        <div class="bar"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <span>SIGUENOS EN NUESTRAS REDES</span>
+  <div class="icons">
+    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+  </div>
+</div>
+
+<!-- OFF-CANVAS -->
+<div class="oc-overlay" id="oc-overlay" hidden></div>
+<aside class="oc-panel" id="offcanvas" role="dialog" aria-modal="true" aria-labelledby="oc-title" aria-hidden="true" tabindex="-1">
+  <div class="oc-header">
+    <img class="oc-feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="">
+    <button class="oc-close" id="oc-close" aria-label="Cerrar menú"><span aria-hidden="true">✕</span></button>
+  </div>
+  <div class="oc-content">
+    <h2 id="oc-title" class="visuallyHidden">Menú principal</h2>
+    <a class="oc-link" href="index.html">Inicio</a>
+    <a class="oc-link" href="perfil.html">Perfil</a>
+    <a class="oc-link" href="parcial.html">Parcial</a>
+    <a class="oc-link" href="portafolio.html">Portafolio</a>
+    <a class="oc-link" href="contacto.html">Contacto</a>
+    <a class="oc-link" href="login.html">Iniciar Sesion</a>
+  </div>
+  <div class="oc-footer">
+    <a href="#">Política de Privacidad</a>
+    <a href="#">Términos de Uso</a>
+    <a href="#">Accesibilidad</a>
+  </div>
+</aside>
+
+<!-- FOOTER -->
+<footer>
+  <section class="foot-left">
+    <img class="feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="Blue Origin Feather">
+    <div class="legal">© 2025 BLUE ORIGIN</div>
+    <div class="legal-links">
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Términos de Uso</a>
+    </div>
+  </section>
+
+  <section class="foot-center">
+    <nav class="menu">
+      ENLACES RÁPIDOS
+      <a href="index.html">Inicio</a>
+      <a href="perfil.html">Perfil</a>
+      <a href="parcial.html">Parcial</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="contacto.html">Contacto</a>
+      <a class="oc-link" href="login.html">Iniciar Sesion</a>
+      <div class="select-wrap">
+        <select class="select">
+          <option selected>Sin preferencia(predeterminado)</option>
+          <option>Sans Serif</option>
+          <option>Serif</option>
+          <option>High Contrast</option>
+        </select>
+      </div>
+    </nav>
+  </section>
+
+  <section class="foot-right">
+    <h3>Suscribirse</h3>
+    <p>Regístrate para recibir actualizaciones sobre los anuncios, lanzamientos y oportunidades de Trabajos.</p>
+    <div class="req">* indica un campo requerido</div>
+    <label class="label" for="email">Correo electrónico *</label>
+    <input class="input" id="email" type="email" required>
+    <div class="check">
+      <span class="box"></span>
+      <p>Por favor, haga clic para confirmar su consentimiento para recibir actualizaciones por correo electrónico de nuestra parte. Nota: tiene el derecho de retirar su consentimiento en cualquier momento contactándonos a josuenehemiasatucusi@gmail.com o haciendo clic en el enlace de "cancelar suscripción" en los correos que le enviamos. Revise nuestra política de privacidad para más información.
+    </div>
+    <button class="submit" type="button">Enviar</button>
+  </section>
+</footer>
+
+<!-- JS -->
+<script type="module" src="usermenu.js"></script>
+<script src="offcanvas.js" defer></script>
+</body>
+</html>

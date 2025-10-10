@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iniciar Sesión — Blue Origin Replica</title>
+
+  <link rel="icon" href="assets/img/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://d1o72l87sylvqg.cloudfront.net" crossorigin>
+  <!-- Font Awesome para iconos de inputs/menú -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== ENCABEZADO ===== -->
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="index.html" aria-label="Inicio">
+        <img src="https://upla.edu.pe/web/wp-content/uploads/2025/06/upla-white.png" alt="BLUE ORIGIN">
+      </a>
+
+      <div class="nav-center">
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="parcial.html">Parcial</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="nav-right">
+        <button type="button" class="translate-button" aria-label="Traducir">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-labelledby="translateIcon">
+            <title id="translateIcon">Translate</title>
+            <path d="M3 5h4m0 0h4M7 5V3m-4 9c5.4-1.5 6.6-7 6.6-7m-4 3c1 1.5 2.7 3.2 5.4 4m-8 3v2c0 1.1.9 2 2 2h4m0 0-3-2v4l3-2ZM21 9V7a2 2 0 0 0-2-2h-4m0 0 3 2V3l-3 2Zm6 16-4-9-4 9m.9-2H20" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <a class="cta" href="login.html" aria-current="page">Iniciar sesión</a>
+        <button class="burger" id="oc-trigger" aria-haspopup="dialog" aria-controls="offcanvas" aria-expanded="false">
+          <span class="sr-only">Menú</span><i></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== CONTENIDO (Login/Registro centrados) ===== -->
+  <main class="auth-page">
+    <!-- REGISTRO -->
+    <section class="auth-card" id="signup" style="display:none;">
+      <h1 class="form-title">Registrarse</h1>
+      <form novalidate>
+        <div id="signUpMessage" class="messageDiv" style="display:none;"></div>
+
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="fName" placeholder=" " required>
+          <label for="fName">Primer Nombre</label>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="lName" placeholder=" " required>
+          <label for="lName">Segundo Nombre</label>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="rEmail" placeholder=" " required>
+          <label for="rEmail">Correo Electrónico</label>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="rPassword" placeholder=" " required>
+          <label for="rPassword">Contraseña</label>
+        </div>
+
+        <button class="btn" id="submitSignUp" type="button">Crear cuenta</button>
+      </form>
+
+      <p class="or">——— o ——</p>
+
+      <!-- SOLO botón largo de Google (registro) -->
+      <div class="oauth-row">
+        <button class="google-btn" id="googleSignUp" type="button" aria-label="Continuar con Google">
+          <span class="google-icon" aria-hidden="true">
+            <!-- Logo oficial “G” multicolor de Google -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 46" width="22" height="22" aria-hidden="true" focusable="false">
+              <g>
+                <path fill="#EA4335" d="M23.5 19.5v7.7h10.7c-.5 2.9-3.2 8.6-10.7 8.6-6.4 0-11.6-5.2-11.6-11.6S17.1 12.6 23.5 12.6c3.6 0 6 1.5 7.4 2.7l5.1-4.9C32.9 7.8 28.7 6 23.5 6 12.7 6 4 14.7 4 25.3S12.7 44.6 23.5 44.6C35.6 44.6 42 36 42 28.2c0-1.5-.2-2.6-.4-3.6H23.5z"/>
+                <path fill="#34A853" d="M6.9 14.7l6.3 4.6c1.7-4.1 5.6-6.7 10.3-6.7 3.6 0 6 1.5 7.4 2.7l5.1-4.9C32.9 7.8 28.7 6 23.5 6 16 6 9.5 10.3 6.9 14.7z"/>
+                <path fill="#FBBC05" d="M23.5 44.6c6.9 0 12.7-4.5 14.7-10.8l-7.2-5.6c-1.4 3.9-5.1 6.7-9.7 6.7-4.7 0-8.7-3.2-10.2-7.6l-6.4 4.9c2.6 6.2 8.6 11.4 18.8 11.4z"/>
+                <path fill="#4285F4" d="M42 28.2c0-1.2-.1-2.1-.4-3.1H23.5v7.7H33c-.6 3.3-2.6 5.6-5 7.1l7.2 5.6C38.9 42.2 42 36.2 42 28.2z"/>
+              </g>
+            </svg>
+          </span>
+          <span class="google-label">Continuar con Google</span>
+        </button>
+      </div>
+
+      <div class="links">
+        <p>¿Ya tienes cuenta?</p>
+        <button id="signInButton" type="button">Inicia sesión</button>
+      </div>
+    </section>
+
+    <!-- LOGIN -->
+    <section class="auth-card" id="signIn">
+      <h1 class="form-title">Iniciar Sesión</h1>
+
+      <form novalidate>
+        <div id="signInMessage" class="messageDiv" style="display:none;"></div>
+
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" placeholder=" " required>
+          <label for="email">Email</label>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" placeholder=" " required>
+          <label for="password">Password</label>
+        </div>
+
+        <p class="recover"><a href="#">¿Olvidaste Contraseña?</a></p>
+        <button class="btn" id="submitSignIn" type="button">Ingresar</button>
+      </form>
+
+      <p class="or">——— o ——</p>
+
+      <!-- SOLO botón largo de Google (login) -->
+      <div class="oauth-row">
+        <button class="google-btn" id="googleSignIn" type="button" aria-label="Continuar con Google">
+          <span class="google-icon" aria-hidden="true">
+            <!-- Logo oficial “G” multicolor de Google -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 46" width="22" height="22" aria-hidden="true" focusable="false">
+              <g>
+                <path fill="#EA4335" d="M23.5 19.5v7.7h10.7c-.5 2.9-3.2 8.6-10.7 8.6-6.4 0-11.6-5.2-11.6-11.6S17.1 12.6 23.5 12.6c3.6 0 6 1.5 7.4 2.7l5.1-4.9C32.9 7.8 28.7 6 23.5 6 12.7 6 4 14.7 4 25.3S12.7 44.6 23.5 44.6C35.6 44.6 42 36 42 28.2c0-1.5-.2-2.6-.4-3.6H23.5z"/>
+                <path fill="#34A853" d="M6.9 14.7l6.3 4.6c1.7-4.1 5.6-6.7 10.3-6.7 3.6 0 6 1.5 7.4 2.7l5.1-4.9C32.9 7.8 28.7 6 23.5 6 16 6 9.5 10.3 6.9 14.7z"/>
+                <path fill="#FBBC05" d="M23.5 44.6c6.9 0 12.7-4.5 14.7-10.8l-7.2-5.6c-1.4 3.9-5.1 6.7-9.7 6.7-4.7 0-8.7-3.2-10.2-7.6l-6.4 4.9c2.6 6.2 8.6 11.4 18.8 11.4z"/>
+                <path fill="#4285F4" d="M42 28.2c0-1.2-.1-2.1-.4-3.1H23.5v7.7H33c-.6 3.3-2.6 5.6-5 7.1l7.2 5.6C38.9 42.2 42 36.2 42 28.2z"/>
+              </g>
+            </svg>
+          </span>
+          <span class="google-label">Continuar con Google</span>
+        </button>
+      </div>
+
+      <div class="links">
+        <p>¿Aún no tienes cuenta?</p>
+        <button id="signUpButton" type="button">Regístrate</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== OFF-CANVAS ===== -->
+  <div class="oc-overlay" id="oc-overlay" hidden></div>
+  <aside class="oc-panel" id="offcanvas" role="dialog" aria-modal="true" aria-labelledby="oc-title" aria-hidden="true" tabindex="-1">
+    <div class="oc-header">
+      <img class="oc-feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="">
+      <button class="oc-close" id="oc-close" aria-label="Cerrar menú"><span aria-hidden="true">✕</span></button>
+    </div>
+    <div class="oc-content">
+      <h2 id="oc-title" class="sr-only">Menú principal</h2>
+      <a class="oc-link" href="index.html">Inicio</a>
+      <a class="oc-link" href="perfil.html">Perfil</a>
+      <a class="oc-link" href="parcial.html">Parcial</a>
+      <a class="oc-link" href="portafolio.html">Portafolio</a>
+      <a class="oc-link" href="contacto.html">Contacto</a>
+      <a class="oc-link" href="login.html" aria-current="page">Iniciar Sesión</a>
+    </div>
+    <div class="oc-footer">
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Términos de Uso</a>
+      <a href="#">Accesibilidad</a>
+    </div>
+  </aside>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer>
+    <section class="foot-left">
+      <img class="feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="Blue Origin Feather">
+      <div class="legal">© 2025 BLUE ORIGIN</div>
+      <div class="legal-links">
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos de Uso</a>
+      </div>
+    </section>
+    <section class="foot-center">
+      <nav class="menu">
+        ENLACES RÁPIDOS
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="parcial.html">Parcial</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="contacto.html">Contacto</a>
+        <a class="oc-link" href="login.html" aria-current="page">Iniciar Sesión</a>
+        <div class="select-wrap">
+          <select class="select" aria-label="Preferencias de visualización">
+            <option selected>Sin preferencia (predeterminado)</option>
+            <option>Sans Serif</option>
+            <option>Serif</option>
+            <option>High Contrast</option>
+          </select>
+        </div>
+      </nav>  
+    </section>
+    <section class="foot-right">
+      <h3>Suscribirse</h3>
+      <p>Regístrate para recibir actualizaciones sobre los anuncios, lanzamientos y oportunidades de Trabajos.</p>
+      <div class="req">* indica un campo requerido</div>
+      <label class="label" for="footer-email">Correo electrónico *</label>
+      <input class="input" id="footer-email" type="email" required>
+      <div class="check">
+        <span class="box"></span>
+        <p>Por favor, haga clic para confirmar su consentimiento para recibir actualizaciones por correo electrónico de nuestra parte. Nota: tiene el derecho de retirar su consentimiento en cualquier momento contactándonos a josuenehemiasatucusi@gmail.com o haciendo clic en el enlace de "cancelar suscripción" en los correos electrónicos que le enviamos. Por favor, revise nuestra <u>política de privacidad</u> para más información sobre cómo procesamos sus datos.</p>
+      </div>
+      <button class="submit" type="button">Enviar</button>
+    </section>
+  </footer>
+
+<script src="script.js"></script>
+<script type="module" src="firebaseauth.js"></script>
+
+
+  <!-- === NUEVO: conecta botones de Google + resuelve redirect === -->
+  <script type="module">
+    import { googleSignIn, resolveGoogleRedirect } from './firebaseauth.js';
+
+    // Captura el retorno de signInWithRedirect apenas carga
+    resolveGoogleRedirect();
+
+    // Enlaza ambos botones (login y registro) si existen
+    const gLogin  = document.getElementById('googleSignIn');
+    const gSignup = document.getElementById('googleSignUp');
+
+    gLogin?.addEventListener('click', (e)=>{
+      e.preventDefault();
+      googleSignIn();
+    });
+
+    gSignup?.addEventListener('click', (e)=>{
+      e.preventDefault();
+      googleSignIn();
+    });
+  </script>
+</body>
+</html>

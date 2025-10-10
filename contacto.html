@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacto — Blue Origin Replica</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/logo.png" type="image/png" />
+
+  <!-- Font Awesome (CSS estable) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="preconnect" href="https://d1o72l87sylvqg.cloudfront.net" crossorigin>
+
+  <style>
+    :root{
+      --blue:#0033DD; --blue-dark:#062dc7; --white:#fff;
+      --foot-left:#1b1b1b; --foot-right:#3b3b3b; --line:#2b2b2b;
+      --purple:#482c91; --purple-2:#5a33b8; --ink:#16111f; --muted:#6b6b6b;
+      --field:#f8f8fb; --stroke:#e8e8f2;
+
+      /* estilos del bloque de contacto (tema oscuro azul) */
+      --bg: #0b0b0b; --text:#ffffff; --stroke2: rgba(255,255,255,.15);
+      --blue2:#0033DD; --blue2-dark:#0e59c1; --accent:#ffffff;
+      --ok:#21c25e; --error:#ff5b5b; --shadow:0 10px 30px rgba(0,0,0,.45);
+      --radius-lg:18px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
+
+    /* CURSORES / INTERACTIVOS */
+    a, button, [role="button"], .cta, .burger, .translate-button,
+    .cap-btn, .submit, .btn, .icons a, .oc-close, .oc-link,
+    .fab button { cursor: pointer; }
+    .oc-overlay{ cursor: pointer; }
+    input, textarea, select { cursor: text; }
+
+    /* HEADER */
+    .topbar{
+      position:sticky;top:0;z-index:1000;background:var(--blue);
+      height:96px;display:flex;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)
+    }
+    .nav{
+      width:100%;margin:0;padding:0 30px;height:96px;
+      display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px
+    }
+    .brand img{height:52px;width:auto;display:block}
+    .nav-center{justify-self:center;display:flex;gap:54px;text-transform:uppercase;letter-spacing:.2em;font-weight:800;font-size:13px}
+    .nav-center a{color:rgba(255,255,255,.95);text-decoration:none}
+    .nav-center a:hover{color:#fff}
+
+    /* NUEVO: acciones separadas para que usermenu.js no borre Traducir ni Burger */
+    .nav-actions{justify-self:end;display:flex;gap:18px;align-items:center}
+
+    .translate-button{background-color:#0033DD;border:none;border-radius:5px;padding:10px 20px;color:white;font-size:16px;display:flex;align-items:center;gap:20px;}
+    .translate-button svg{ width:30px; height:30px; fill:white;}
+
+    /* solo el login vive dentro del slot */
+    #login-slot .cta{
+      display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:8px;background:#fff;color:#0033dd;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:12px;border:1px solid rgba(0,0,0,.06);text-decoration:none
+    }
+
+    .burger{width:42px;height:42px;background:transparent;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;border:none}
+    .burger i,.burger::before{content:"";display:block;width:35px;height:5px;background:#fff;border-radius:2px}
+    .burger::after{display:none}
+
+    /* Oculta el menú central recién en móvil */
+    @media (max-width:900px){.nav-center{display:none}}
+
+    /* ======== ESTILOS DEL BLOQUE "CONTÁCTENOS" ======== */
+    .wrap{width:min(1200px,92vw);margin:0 auto}
+    .mapa{width:100%;aspect-ratio:21/9;border:0;filter:grayscale(10%);display:block}
+    .contact-wrap{display:grid;grid-template-columns:1.2fr .9fr;gap:40px;align-items:start;margin:40px auto 90px}
+    @media (max-width:980px){.contact-wrap{grid-template-columns:1fr;gap:28px;margin:28px auto 64px}}
+    .h1{font-size:clamp(28px,3.6vw,40px);font-weight:800;margin:18px 0 14px}
+    .lead{opacity:.9;font-size:18px}
+    .info-list{margin-top:26px;display:grid;gap:18px}
+    .info-item{display:grid;grid-template-columns:28px 1fr;gap:14px;padding:14px 0;border-bottom:1px dashed var(--stroke2)}
+    .info-item:last-child{border-bottom:0}
+    .info-item i{font-size:20px;color:var(--accent)}
+    .info-item .ttl{font-weight:700}
+    .info-item .val{opacity:.95}
+    .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .chip{border:1px solid var(--stroke2);border-radius:999px;padding:6px 10px;font-size:13px;opacity:.9}
+
+    .card{background:var(--blue2);color:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.08)}
+    .card .card-in{padding:clamp(18px,3.5vw,36px)}
+    .card h2{margin:6px 0 6px;font-size:clamp(22px,2.6vw,32px);font-weight:900}
+    .rule{height:4px;width:48px;background:rgba(255,255,255,.85);border-radius:4px;margin:12px 0 22px}
+
+    .form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .form .full{grid-column:1 / -1}
+    label{display:block;font-size:13px;opacity:.9;margin:8px 0}
+    input,textarea{width:100%;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.08);color:#fff;border-radius:12px;padding:12px 14px;outline:none;font-size:15px;transition:border .2s ease,box-shadow .2s ease,background .2s ease}
+    input::placeholder,textarea::placeholder{color:rgba(255,255,255,.85)}
+    input:focus,textarea:focus{border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.18);background:rgba(255,255,255,.12)}
+    textarea{min-height:120px;resize:vertical} 
+
+    .captcha{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:14px}
+    .captcha-code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:22px;font-weight:800;letter-spacing:2px;padding:10px 14px;background:rgba(0,0,0,.28);border-radius:12px;user-select:none;border:1px dashed rgba(255,255,255,.5)}
+    .cap-btn{border:1px solid rgba(255,255,255,.6);background:transparent;color:#fff;border-radius:12px;padding:10px 12px;transition:.2s}
+    .cap-btn:hover{background:rgba(0,0,0,.2)}
+
+    .btn{appearance:none;border:0;background:#0a0a0a;color:#fff;font-weight:800;padding:14px 18px;border-radius:14px;letter-spacing:.5px;box-shadow:var(--shadow);transition:transform .06s ease,background .2s ease;border:1px solid rgba(255,255,255,.18)}
+    .btn:hover{background:#121212}
+    .btn:active{transform:translateY(1px)}
+    .note{font-size:13px;opacity:.9}
+
+    /* ====== SOCIAL BAR ====== */
+    .social-bar{background:var(--blue);padding:18px 20px;display:flex;justify-content:center;align-items:center;gap:22px}
+    .social-bar span{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800}
+    .icons{display:flex;gap:18px;align-items:center}
+    .icons a{width:34px;height:34px;border:2px solid #fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none}
+
+    /* flotantes */
+    .fab{position:fixed;right:16px;bottom:20px;z-index:50;display:flex;flex-direction:column;gap:10px}
+    .fab button{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--stroke2);background:rgba(255,255,255,.08);color:#fff;box-shadow:var(--shadow);text-decoration:none;transition:.2s}
+    .fab button:hover{transform:translateY(-2px);background:rgba(255,255,255,.18)}
+    .fab .up{display:none}
+
+    /* OFF-CANVAS */
+    .oc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:saturate(130%) blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;}
+    .oc-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,88vw);background:#2e2e2e;color:#fff;transform:translateX(100%);transition:transform .28s ease;z-index:1300;display:flex;flex-direction:column;box-shadow:-8px 0 22px rgba(0,0,0,.45);}
+    .oc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+    .oc-feather{height:28px}
+    .oc-close{width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center;}
+    .oc-content{padding:10px 20px 24px;overflow:auto}
+    .oc-link{display:block;padding:12px 2px;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08);}
+    .oc-link:hover{background:#3a3a3a}
+    .oc-footer{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:10px;flex-wrap:wrap}
+    .oc-footer a{color:#fff;text-decoration:none;font-size:13px;opacity:.9}
+    .oc-footer a:hover{opacity:1;text-decoration:underline}
+    .oc-open .oc-overlay{opacity:1;pointer-events:auto}
+    .oc-open .oc-panel{transform:translateX(0)}
+
+    /* FOOTER */
+    footer{display:grid;grid-template-columns:45% 22% 33%;height:635px;background:linear-gradient(90deg,var(--foot-left)0 67.6%,var(--foot-right)67.6% 100%);color:#fff;border-top:1px solid #232323}
+    .foot-left{padding:80px 40px 40px 120px;display:flex;flex-direction:column;justify-content:center}
+    .feather{width:340px;max-width:90%;margin:0 0 28px 0;filter:brightness(1.05)}
+    .legal{margin-top:8px;font-size:14px;color:#d9d9d9}
+    .legal-links{margin-top:18px;display:flex;gap:24px}
+    .legal-links a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px;font-size:14px}
+    .legal-links a:hover{border-bottom-color:#fff}
+    .foot-center{position:relative;padding:60px 40px 60px 0}
+    .foot-center::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:1px;background:var(--line)}
+    .menu{padding-left:40px;display:flex;flex-direction:column;gap:26px}
+    .menu a{color:#fff;text-decoration:none;font-size:16px;letter-spacing:.04em}
+    .menu a:hover{text-decoration:underline}
+    .select-wrap{margin-top:6px;width:330px;position:relative}
+    .select{width:100%;appearance:none;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;padding:12px 42px 12px 16px;font-size:14px}
+    .select-wrap::after{content:"▾";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:16px;color:#fff}
+    .foot-right{background:var(--foot-right);padding:60px 56px;display:flex;flex-direction:column;gap:14px}
+    .foot-right h3{font-size:22px;font-weight:800;margin-bottom:6px}
+    .foot-right p{color:#e1e1e1;font-size:15px;line-height:1.6}
+    .req{color:#ccc;font-size:13px;margin:2px 0 6px}
+    .label{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin:10px 0 6px}
+    .input{width:min(740px,100%);height:46px;background:transparent;border:2px solid #fff;border-radius:4px;color:#fff;padding:0 10px;font-size:15px}
+    .check{display:flex;align-items:flex-start;gap:12px;margin-top:12px}
+    .box{width:18px;height:18px;border:2px solid #fff;background:transparent;display:inline-block;flex-shrink:0}
+    .check p{color:#e1e1e1;font-size:14px;line-height:1.6}
+    .submit{align-self:flex-start;margin-top:14px;background:transparent;color:#fff;border:2px solid #fff;border-radius:4px;padding:8px 14px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:13px}
+    .submit:hover{background:#fff;color:#000}
+
+    @media(max-width:1100px){
+      footer{grid-template-columns:1fr;height:auto}
+      .foot-center::before{display:none}
+      .menu{padding-left:0}
+      .foot-left,.foot-center,.foot-right{padding:28px 22px}
+      .feather{width:220px}
+    }
+
+    .visuallyHidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <img src="https://upla.edu.pe/web/wp-content/uploads/2025/06/upla-white.png" alt="BLUE ORIGIN">
+      </a>
+
+      <div class="nav-center">
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="parcial.html">Parcial</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <!-- NUEVO: acciones separadas (traducir + login-slot + burger) -->
+      <div class="nav-actions">
+        <button type="button" class="translate-button" aria-label="Translate">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-labelledby="translateIcon">
+            <title id="translateIcon">Translate</title>
+            <path d="M3 5h4m0 0h4M7 5V3m-4 9c5.4-1.5 6.6-7 6.6-7m-4 3c1 1.5 2.7 3.2 5.4 4m-8 3v2c0 1.1.9 2 2 2h4m0 0-3-2v4l3-2ZM21 9V7a2 2 0 0 0-2-2h-4m0 0 3 2V3l-3 2Zm6 16-4-9-4 9m.9-2H20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <!-- SLOT para que usermenu reemplace sólo el login -->
+        <span id="login-slot">
+          <a class="cta" href="login.html">Iniciar sesión</a>
+        </span>
+
+        <button class="burger" id="oc-trigger" aria-haspopup="dialog" aria-controls="offcanvas" aria-expanded="false">
+          <span class="visuallyHidden">Main menu</span><i></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======= MAPA ======= -->
+  <section id="mapa" class="wrap" style="margin-top:22px">
+    <iframe class="mapa"
+      title="Ubicación — Universidad Peruana Los Andes (UPLA)"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.060429623755!2d-75.19520369999999!3d-12.040353399999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910e970012ec59a9%3A0x406745455c48f664!2sUniversidad%20Peruana%20Los%20Andes!5e0!3m2!1ses!2spe!4v1727200000000!5m2!1ses!2spe">
+    </iframe>
+  </section>
+
+  <!-- ======= CONTENIDO (INFO + FORMULARIO con captcha) ======= -->
+  <main class="wrap contact-wrap">
+    <!-- INFO -->
+    <section id="info">
+      <h1 class="h1">Estaremos encantados de discutir tu proyecto y responder cualquier pregunta</h1>
+      <p class="lead">Atendemos de lunes a viernes de 9:00 a 18:00 (GMT-5). También puedes escribirnos por WhatsApp y te responderemos lo antes posible.</p>
+
+      <div class="info-list">
+        <div class="info-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <div class="ttl">Dirección</div>
+            <div class="val">Universidad Peruana Los Andes</div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <div class="ttl">Email</div>
+            <div class="val"><a href="mailto:josuenehemiasatucusi@gmail.com" style="color:#fff">josuenehemiasatucusi@gmail.com</a></div>
+            <div class="chips">
+              <span class="chip">Soporte</span>
+              <span class="chip">Ventas</span>
+              <span class="chip">Proyectos</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <div class="ttl">Número telefónico</div>
+            <div class="val">(01) 7008719 &nbsp;·&nbsp; 910 064 458</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULARIO -->
+    <section id="form" class="card">
+      <div class="card-in">
+        <h2>Formulario de contacto</h2>
+        <div class="rule"></div>
+
+        <form id="contactForm" class="form" novalidate>
+          <div>
+            <label for="nombre">Nombre*</label>
+            <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required>
+          </div>
+
+          <div>
+            <label for="apellido">Apellido*</label>
+            <input id="apellido" name="apellido" type="text" placeholder="Tu apellido" required>
+          </div>
+
+          <div>
+            <label for="email">Email*</label>
+            <input id="email" name="email" type="email" placeholder="tucorreo@dominio.com" required>
+          </div>
+
+          <div>
+            <label for="telefono">Teléfono*</label>
+            <input id="telefono" name="telefono" type="tel" placeholder="Ej. 999 999 999" required>
+          </div>
+
+          <div class="full">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje"></textarea>
+          </div>
+
+          <div class="full captcha">
+            <div>
+              <label for="code">Código de seguridad</label>
+              <input id="code" name="code" type="text" placeholder="Ingresa el código" required>
+            </div>
+            <div class="captcha-code" id="captchaText">AB12C</div>
+            <button type="button" class="cap-btn" id="regen" title="Generar nuevo código">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </div>
+
+          <div class="full" style="display:flex; gap:12px; align-items:center; margin-top:6px">
+            <button class="btn" type="submit">ENVIAR MENSAJE</button>
+            <span class="note" id="formNote" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Flotante: solo botón "arriba" -->
+  <div class="fab">
+     <button class="up" id="goTop" title="Arriba" aria-label="Ir arriba">
+         <i class="fa-solid fa-arrow-up"></i>
+      </button>
+   </div>
+
+  <!-- SOCIAL BAR -->
+  <div class="social-bar">
+    <span>SIGUENOS EN NUESTRAS REDES</span>
+    <div class="icons">
+      <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <!-- OFF-CANVAS -->
+  <div class="oc-overlay" id="oc-overlay" hidden></div>
+  <aside class="oc-panel" id="offcanvas" role="dialog" aria-modal="true" aria-labelledby="oc-title" aria-hidden="true" tabindex="-1">
+    <div class="oc-header">
+      <img class="oc-feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="">
+      <button class="oc-close" id="oc-close" aria-label="Cerrar menú"><span aria-hidden="true">✕</span></button>
+    </div>
+    <div class="oc-content">
+      <h2 id="oc-title" class="visuallyHidden">Menú principal</h2>
+      <a class="oc-link" href="index.html">Inicio</a>
+      <a class="oc-link" href="perfil.html">Perfil</a>
+      <a class="oc-link" href="parcial.html">Parcial</a>
+      <a class="oc-link" href="portafolio.html">Portafolio</a>
+      <a class="oc-link" href="contacto.html">Contacto</a>
+      <a class="oc-link" href="login.html">Iniciar Sesion</a>
+    </div>
+    <div class="oc-footer">
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Términos de Uso</a>
+      <a href="#">Accesibilidad</a>
+    </div>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer>
+    <section class="foot-left">
+      <img class="feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="Blue Origin Feather">
+      <div class="legal">© 2025 BLUE ORIGIN</div>
+      <div class="legal-links">
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos de Uso</a>
+      </div>
+    </section>
+    <section class="foot-center">
+      <nav class="menu">
+        ENLACES RÁPIDOS
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="parcial.html">Parcial</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="contacto.html">Contacto</a>
+        <a class="oc-link" href="login.html">Iniciar Sesion</a>
+        <div class="select-wrap">
+          <select class="select" aria-label="Preferencias de visualización">
+            <option selected>Sin preferencia(predeterminado)</option>
+            <option>Sans Serif</option>
+            <option>Serif</option>
+            <option>High Contrast</option>
+          </select>
+        </div>
+      </nav>
+    </section>
+    <section class="foot-right">
+      <h3>Suscribirse</h3>
+      <p>Regístrate para recibir actualizaciones sobre los anuncios, lanzamientos y oportunidades de Trabajos.</p>
+      <div class="req">* indica un campo requerido</div>
+      <label class="label" for="email">Correo electrónico *</label>
+      <input class="input" id="email" type="email" required>
+      <div class="check">
+        <span class="box" aria-hidden="true"></span>
+        <p>
+          Por favor, haga clic para confirmar su consentimiento para recibir actualizaciones por correo electrónico de nuestra parte. Nota: tiene el derecho de retirar su consentimiento en cualquier momento contactándonos a
+          <a href="mailto:josuenehemiasatucusi@gmail.com" style="color:#fff">josuenehemiasatucusi@gmail.com</a> o haciendo clic en el enlace de “cancelar suscripción” en los correos electrónicos que le enviamos. Por favor, revise nuestra <u>política de privacidad</u> para más información sobre cómo procesamos sus datos.
+        </p>
+      </div>
+      <button class="submit" type="button">Enviar</button>
+    </section>
+  </footer>
+
+  <!-- JS (solo lo necesario; SIN duplicar off-canvas inline) -->
+  <script>
+    /* Botón "arriba" */
+    const goTopBtn = document.getElementById('goTop');
+    if (goTopBtn){
+      window.addEventListener('scroll', () => {
+        const show = window.scrollY > 500;
+        goTopBtn.style.display = show ? 'grid' : 'none';
+      });
+      goTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+
+    /* Captcha y validación del formulario */
+    const captchaText = document.getElementById('captchaText');
+    const regenBtn    = document.getElementById('regen');
+    function genCode(len=5){
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let s=''; for (let i=0;i<len;i++) s += chars[Math.floor(Math.random()*chars.length)];
+      return s;
+    }
+    let currentCode = genCode();
+    if (captchaText) captchaText.textContent = currentCode;
+    if (regenBtn){
+      regenBtn.addEventListener('click', () => {
+        currentCode = genCode();
+        captchaText.textContent = currentCode;
+      });
+    }
+
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+    if (form){
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (note) note.textContent = '';
+        const fd = new FormData(form);
+        const bad = [];
+        ['nombre','apellido','email','telefono','code'].forEach(k=>{
+          if(!fd.get(k) || String(fd.get(k)).trim()==='') bad.push(k);
+        });
+        const email = String(fd.get('email')||'');
+        const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+        if (bad.length || !okEmail){
+          if (note){ note.style.color = 'var(--error)'; note.textContent = 'Por favor completa los campos obligatorios correctamente.'; }
+          return;
+        }
+        if (String(fd.get('code')).trim().toUpperCase() !== currentCode){
+          if (note){ note.style.color = 'var(--error)'; note.textContent = 'El código de seguridad no coincide.'; }
+          return;
+        }
+        console.log('Datos simulados:', Object.fromEntries(fd.entries()));
+        if (note){ note.style.color = 'var(--ok)'; note.textContent = '¡Mensaje enviado correctamente! (simulado)'; }
+        form.reset();
+        currentCode = genCode();
+        if (captchaText) captchaText.textContent = currentCode;
+      });
+    }
+  </script>
+
+  <!-- scripts del sitio -->
+  <script type="module" src="usermenu.js"></script>
+  <script src="offcanvas.js" defer></script>
+  <script src="script.js"></script>
+  <script type="module" src="firebaseauth.js"></script>
+</body>
+</html>

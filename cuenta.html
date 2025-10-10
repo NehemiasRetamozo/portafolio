@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mi Cuenta — Blue Origin Replica</title>
+
+<link rel="icon" href="assets/img/logo.png" type="image/png" />
+<link rel="preconnect" href="https://d1o72l87sylvqg.cloudfront.net" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+  :root{
+    --blue:#0033DD; --white:#fff;
+    --ink:#e8e8e8; --muted:#bdbdbd;
+    --bg:#000; --panel:#181818; --panel-2:#1f1f1f; --stroke:#2a2a2a;
+    --avatar-size:114px;
+  }
+
+  /* Base */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
+  .visuallyHidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  a,button,[role="button"]{cursor:pointer}
+
+  /* Topbar */
+  .topbar{position:sticky;top:0;z-index:1000;background:var(--blue);height:96px;display:flex;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .nav{width:100%;padding:0 30px;height:96px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px}
+  .brand img{height:52px;width:auto;display:block}
+  .nav-center{justify-self:center;display:flex;gap:54px;text-transform:uppercase;letter-spacing:.2em;font-weight:800;font-size:13px}
+  .nav-center a{color:rgba(255,255,255,.95);text-decoration:none}
+  .nav-center a:hover{color:#fff}
+  .nav-right{justify-self:end;display:flex;gap:18px;align-items:center}
+  .translate-button{background-color:#0033DD;border:none;border-radius:5px;padding:10px 20px;color:#fff;font-size:16px;display:flex;align-items:center;gap:20px}
+  .translate-button svg{width:30px;height:30px;fill:#fff}
+  .cta{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:8px;background:#fff;color:#0033dd;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:12px;border:1px solid rgba(0,0,0,.06);text-decoration:none}
+  .burger{width:42px;height:42px;background:transparent;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;border:none}
+  .burger i,.burger::before{content:"";display:block;width:35px;height:5px;background:#fff;border-radius:2px}
+  .burger::after{display:none}
+  @media (max-width:1200px){.nav-center{display:none}}
+
+  /* Página */
+  .page{max-width:1240px;margin:40px auto;padding:0 22px}
+  .hello{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .hello div{opacity:.9;font-weight:800;letter-spacing:.06em;color:#e5e7eb}
+  .hello h1{font-size:40px;letter-spacing:.01em;color:#fff}
+
+  /* ===== Panel Cuenta (Samsung-like) ===== */
+  .account-wrap{
+    background:var(--panel);border:1px solid var(--stroke);border-radius:24px;position:relative;
+    padding:calc(var(--avatar-size)/2 + 72px) 34px 34px;
+    overflow:visible;
+  }
+  .account-wrap::before{
+    content:"";position:absolute;inset:0 0 auto 0;height:300px;opacity:.06;
+    background:url("https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg") no-repeat center -40px/620px auto;
+    pointer-events:none;filter:grayscale(1) contrast(1.05);
+  }
+  .avatar-float{
+    position:absolute;left:50%;top:0;transform:translate(-50%,-50%);
+    width:var(--avatar-size);height:var(--avatar-size);border-radius:50%;
+    background:#2f2f2f;color:#fff;display:grid;place-items:center;font-weight:900;
+    font-size:calc(var(--avatar-size)*.36);border:8px solid #fff;
+    box-shadow:0 12px 26px rgba(0,0,0,.55),0 0 0 2px rgba(0,0,0,.35) inset;overflow:hidden;
+  }
+  .avatar-float img{width:100%;height:100%;object-fit:cover;display:none}
+  .head{text-align:center;margin-top:10px}
+  .name{font-size:32px;font-weight:800;letter-spacing:.01em;margin-bottom:4px}
+  .email{color:var(--muted);font-size:16px}
+  .rows{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin:26px auto 0;max-width:1200px}
+  .row{background:var(--panel-2);border:1px solid var(--stroke);border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:12px}
+  .row i{color:#e6e6e6;font-size:18px}
+  .r-label{color:#9aa0a6;font-size:13px}
+  .r-val{color:#e6e6e6;margin-top:4px}
+  .cta-wrap{display:flex;justify-content:center;margin-top:28px}
+  .s-btn{background:#0b63ff;color:#fff;border:none;border-radius:28px;padding:14px 22px;font-weight:800}
+  .s-btn:hover{opacity:.95}
+  @media (max-width:900px){.rows{grid-template-columns:1fr}}
+
+  /* ===== Información Personal (NUEVA SECCIÓN) ===== */
+  .personal-title{
+    font-size:26px;font-weight:700;color:#dfe7ef;letter-spacing:.01em;
+    max-width:1240px;margin:36px auto 14px;padding:0 22px;
+  }
+  .personal-wrap{
+    max-width:1200px;margin:0 auto; padding:34px 34px 44px;
+    background:#181818;border:1px solid var(--stroke); border-radius:24px;
+  }
+  .p-grid{
+    display:grid;grid-template-columns:1fr 1fr; gap:46px 80px;
+  }
+  .p-item{display:grid;grid-template-columns:36px 1fr;column-gap:14px;align-items:start}
+  .p-ico{width:36px;display:grid;place-items:center;color:#eaeaea;font-size:18px}
+  .p-label{color:#9aa0a6;font-size:13px;margin-bottom:6px}
+  .p-value{color:#e7e7e7;font-size:18px}
+  .p-hr{height:1px;background:#2b2b2b;margin:12px 0 4px}
+  .p-actions{display:flex;justify-content:center;margin-top:30px}
+  .p-btn{background:#0b63ff;color:#fff;border:none;border-radius:28px;padding:16px 26px;font-weight:800}
+  .p-btn:hover{opacity:.95}
+  @media (max-width:980px){
+    .p-grid{grid-template-columns:1fr}
+  }
+
+  /* Off-canvas */
+  .oc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:saturate(130%) blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;}
+  .oc-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,88vw);background:#2e2e2e;color:#fff;transform:translateX(100%);transition:transform .28s ease;z-index:1300;display:flex;flex-direction:column;box-shadow:-8px 0 22px rgba(0,0,0,.45);}
+  .oc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+  .oc-feather{height:28px}
+  .oc-close{width:40px;height:40px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center}
+  .oc-content{padding:10px 20px 24px;overflow:auto}
+  .oc-link{display:block;padding:12px 2px;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08)}
+  .oc-link:hover{background:#3a3a3a}
+  .oc-footer{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:10px;flex-wrap:wrap}
+  .oc-footer a{color:#fff;text-decoration:none;font-size:13px;opacity:.9}
+  .oc-footer a:hover{opacity:1;text-decoration:underline}
+  .oc-open .oc-overlay{opacity:1;pointer-events:auto}
+  .oc-open .oc-panel{transform:translateX(0)}
+
+  /* Social bar + footer */
+  .social-bar{background:var(--blue);padding:18px 20px;display:flex;justify-content:center;align-items:center;gap:22px;margin-top:28px}
+  .social-bar span{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:#fff}
+  .icons{display:flex;gap:18px;align-items:center}
+  .icons a{width:34px;height:34px;border:2px solid #fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none}
+
+  footer{display:grid;grid-template-columns:45% 22% 33%;height:635px;background:linear-gradient(90deg,#1b1b1b 0 67.6%,#3b3b3b 67.6% 100%);color:#fff;border-top:1px solid #232323}
+  .foot-left{padding:80px 40px 40px 120px;display:flex;flex-direction:column;justify-content:center}
+  .feather{width:340px;max-width:90%;margin:0 0 28px 0;filter:brightness(1.05)}
+  .legal{margin-top:8px;font-size:14px;color:#d9d9d9}
+  .legal-links{margin-top:18px;display:flex;gap:24px}
+  .legal-links a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px;font-size:14px}
+  .legal-links a:hover{border-bottom-color:#fff}
+  .foot-center{position:relative;padding:60px 40px 60px 0}
+  .foot-center::before{content:"";position:absolute;left:0;top:38px;bottom:38px;width:1px;background:#2b2b2b}
+  .menu{padding-left:40px;display:flex;flex-direction:column;gap:26px}
+  .menu a{color:#fff;text-decoration:none;font-size:16px;letter-spacing:.04em}
+  .menu a:hover{text-decoration:underline}
+  .select-wrap{margin-top:6px;width:330px;position:relative}
+  .select{width:100%;appearance:none;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;padding:12px 42px 12px 16px;font-size:14px}
+  .select-wrap::after{content:"▾";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:16px;color:#fff}
+  .foot-right{background:#3b3b3b;padding:60px 56px;display:flex;flex-direction:column;gap:14px}
+  .foot-right h3{font-size:22px;font-weight:800;margin-bottom:6px}
+  .foot-right p{color:#e1e1e1;font-size:15px;line-height:1.6}
+  .req{color:#ccc;font-size:13px;margin:2px 0 6px}
+  .label{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin:10px 0 6px}
+  .input{width:min(740px,100%);height:46px;background:transparent;border:2px solid #fff;border-radius:4px;color:#fff;padding:0 10px;font-size:15px}
+  .check{display:flex;align-items:flex-start;gap:12px;margin-top:12px}
+  .box{width:18px;height:18px;border:2px solid #fff;background:transparent;display:inline-block;flex-shrink:0}
+  .submit{align-self:flex-start;margin-top:14px;background:transparent;color:#fff;border:2px solid #fff;border-radius:4px;padding:8px 14px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:13px}
+  .submit:hover{background:#fff;color:#000}
+  @media(max-width:1100px){
+    footer{grid-template-columns:1fr;height:auto}
+    .foot-center::before{display:none}
+    .foot-left,.foot-center,.foot-right{padding:28px 22px}
+    .feather{width:220px}
+  }
+</style>
+
+<!-- Guard: redirige si no hay sesión -->
+<script type="module">
+  import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+  const cfg = {
+    apiKey:"AIzaSyCo3llrVhgJroj1NcM4tGiKOJQVwRIx4FU",
+    authDomain:"login-form-6f237.firebaseapp.com",
+    projectId:"login-form-6f237",
+    storageBucket:"login-form-6f237.firebasestorage.app",
+    messagingSenderId:"711287319130",
+    appId:"1:711287319130:web:92eec814baf16a665d8663",
+    measurementId:"G-H6H8BCWJ35"
+  };
+  const app = getApps().length ? getApp() : initializeApp(cfg);
+  const auth = getAuth(app);
+  const cached = localStorage.getItem('loggedInUserId');
+  const goLogin = ()=>window.location.replace('login.html');
+  if(!cached){
+    onAuthStateChanged(auth,(u)=>{ if(!u) goLogin(); else localStorage.setItem('loggedInUserId',u.uid); });
+  }
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <img src="https://upla.edu.pe/web/wp-content/uploads/2025/06/upla-white.png" alt="BLUE ORIGIN">
+    </a>
+    <div class="nav-center">
+      <a href="index.html">Inicio</a>
+      <a href="perfil.html">Perfil</a>
+      <a href="parcial.html">Parcial</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="nav-right">
+      <button type="button" class="translate-button" aria-label="Traducir">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-labelledby="translateIcon">
+          <title id="translateIcon">Translate</title>
+          <path d="M3 5h4m0 0h4M7 5V3m-4 9c5.4-1.5 6.6-7 6.6-7m-4 3c1 1.5 2.7 3.2 5.4 4m-8 3v2c0 1.1.9 2 2 2h4m0 0-3-2v4l3-2ZM21 9V7a2 2 0 0 0-2-2h-4m0 0 3 2V3l-3 2Zm6 16-4-9-4 9m.9-2H20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+      <a class="cta" href="login.html">Iniciar sesión</a>
+      <button class="burger" id="oc-trigger" aria-haspopup="dialog" aria-controls="offcanvas" aria-expanded="false" title="Abrir menú">
+        <i></i>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+  <div class="hello">
+    <div>¡Hola!</div><h1>Mi Cuenta</h1>
+  </div>
+
+  <!-- ===== Panel cuenta ===== -->
+  <section class="account-wrap">
+    <div class="avatar-float" aria-hidden="true">
+      <span id="avInitial">U</span>
+      <img id="avImg" alt="">
+    </div>
+
+    <div class="head">
+      <div class="name" id="sName">Usuario</div>
+      <div class="email" id="sEmail">usuario@correo.com</div>
+    </div>
+
+    <div class="rows">
+      <div class="row">
+        <i class="fa-regular fa-envelope"></i>
+        <div>
+          <div class="r-label">ID del correo</div>
+          <div class="r-val" id="sEmailRow">usuario@correo.com</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <i class="fa-brands fa-google" style="color:#34a853"></i>
+        <div>
+          <div class="r-label">Cuenta de Google</div>
+          <div class="r-val">Activar</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <button class="s-btn" type="button">Administrar la Samsung account</button>
+    </div>
+  </section>
+
+  <!-- ===== Información personal (NUEVO) ===== -->
+  <h2 class="personal-title">Información personal</h2>
+
+  <section class="personal-wrap" aria-labelledby="personalTitle">
+    <div class="p-grid">
+      <!-- Columna izquierda -->
+      <div class="p-item">
+        <div class="p-ico"><i class="fa-regular fa-user"></i></div>
+        <div>
+          <div class="p-label">Nombre</div>
+          <div class="p-value" id="pName">Josue Nehemias Retamozo Ataucusi</div>
+          <div class="p-hr"></div>
+        </div>
+      </div>
+
+      <div class="p-item">
+        <div class="p-ico"><i class="fa-regular fa-calendar-days"></i></div>
+        <div>
+          <div class="p-label">Fecha de nacimiento</div>
+          <div class="p-value" id="pBirth">28 de oct de 2003</div>
+          <div class="p-hr"></div>
+        </div>
+      </div>
+
+      <div class="p-item">
+        <div class="p-ico"><i class="fa-solid fa-phone"></i></div>
+        <div>
+          <div class="p-label">Número de teléfono (1)</div>
+          <div class="p-value" id="pPhone">+51 916 217 779</div>
+          <div class="p-hr"></div>
+        </div>
+      </div>
+
+      <div class="p-item">
+        <div class="p-ico"><i class="fa-regular fa-face-smile"></i></div>
+        <div>
+          <div class="p-label">Alias</div>
+          <div class="p-value" id="pAlias">—</div>
+          <div class="p-hr"></div>
+        </div>
+      </div>
+
+      <div class="p-item">
+        <div class="p-ico"><i class="fa-solid fa-message"></i></div>
+        <div>
+          <div class="p-label">Mensaje de estado</div>
+          <div class="p-value" id="pStatus">—</div>
+          <div class="p-hr"></div>
+        </div>
+      </div>
+
+      <div class="p-item">
+        <div class="p-ico"><i class="fa-solid fa-building"></i></div>
+        <div>
+          <div class="p-label">Trabajo</div>
+          <div class="p-value" id="pJob">—</div>
+          <div class="p-hr"></div>
+        </div>
+      </div>
+
+      <div class="p-item">
+        <div class="p-ico"><span style="font-weight:800">Aa</span></div>
+        <div>
+          <div class="p-label">Idioma</div>
+          <div class="p-value" id="pLang">Español</div>
+          <div class="p-hr"></div>
+        </div>
+      </div>
+
+      <div class="p-item">
+        <div class="p-ico"><i class="fa-solid fa-location-dot"></i></div>
+        <div>
+          <div class="p-label">País o región</div>
+          <div class="p-value" id="pCountry">Perú</div>
+          <div class="p-hr"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-actions">
+      <button class="p-btn" type="button">Edita la información personal</button>
+    </div>
+  </section>
+</main>
+
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <span>SÍGUENOS EN NUESTRAS REDES</span>
+  <div class="icons">
+    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+  </div>
+</div>
+
+<!-- OFF-CANVAS -->
+<div class="oc-overlay" id="oc-overlay" hidden></div>
+<aside class="oc-panel" id="offcanvas" role="dialog" aria-modal="true" aria-labelledby="oc-title" aria-hidden="true" tabindex="-1">
+  <div class="oc-header">
+    <img class="oc-feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="">
+    <button class="oc-close" id="oc-close" aria-label="Cerrar menú"><span aria-hidden="true">✕</span></button>
+  </div>
+  <div class="oc-content">
+    <h2 id="oc-title" class="visuallyHidden">Menú principal</h2>
+    <a class="oc-link" href="index.html">Inicio</a>
+    <a class="oc-link" href="perfil.html">Perfil</a>
+    <a class="oc-link" href="parcial.html">Parcial</a>
+    <a class="oc-link" href="portafolio.html">Portafolio</a>
+    <a class="oc-link" href="contacto.html">Contacto</a>
+    <a class="oc-link" href="login.html">Iniciar Sesion</a>
+  </div>
+  <div class="oc-footer">
+    <a href="#">Política de Privacidad</a><a href="#">Términos de Uso</a><a href="#">Accesibilidad</a>
+  </div>
+</aside>
+
+<!-- FOOTER -->
+<footer>
+  <section class="foot-left">
+    <img class="feather" src="https://d1o72l87sylvqg.cloudfront.net/blue-origin/logo-feather-optimized.svg" alt="Blue Origin Feather">
+    <div class="legal">© 2025 BLUE ORIGIN</div>
+    <div class="legal-links"><a href="#">Política de Privacidad</a><a href="#">Términos de Uso</a></div>
+  </section>
+  <section class="foot-center">
+    <nav class="menu">
+      ENLACES RÁPIDOS
+      <a href="index.html">Inicio</a>
+      <a href="perfil.html">Perfil</a>
+      <a href="parcial.html">Parcial</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="contacto.html">Contacto</a>
+      <a class="oc-link" href="login.html">Iniciar Sesion</a>
+      <div class="select-wrap">
+        <select class="select">
+          <option selected>Sin preferencia(predeterminado)</option>
+          <option>Sans Serif</option><option>Serif</option><option>High Contrast</option>
+        </select>
+      </div>
+    </nav>
+  </section>
+  <section class="foot-right">
+    <h3>Suscribirse</h3>
+    <p>Regístrate para recibir actualizaciones sobre los anuncios, lanzamientos y oportunidades de Trabajos.</p>
+    <div class="req">* indica un campo requerido</div>
+    <label class="label" for="email">Correo electrónico *</label>
+    <input class="input" id="email" type="email" required>
+    <div class="check">
+      <span class="box"></span>
+      <p>Por favor, haga clic para confirmar su consentimiento para recibir actualizaciones por correo electrónico de nuestra parte. Nota: tiene el derecho de retirar su consentimiento en cualquier momento contactándonos a josuenehemiasatucusi@gmail.com o haciendo clic en el enlace de "cancelar suscripción" en los correos electrónicos que le enviamos. Por favor, revise nuestra <u>política de privacidad</u> para más información sobre cómo procesamos sus datos.</p>
+    </div>
+    <button class="submit" type="button">Enviar</button>
+  </section>
+</footer>
+
+<!-- JS Off-canvas -->
+<script>
+  const body=document.body,trigger=document.getElementById('oc-trigger'),overlay=document.getElementById('oc-overlay'),panel=document.getElementById('offcanvas'),btnClose=document.getElementById('oc-close');
+  function closeOC(){body.classList.remove('oc-open');body.style.overflow='';trigger?.setAttribute('aria-expanded','false');panel.setAttribute('aria-hidden','true');overlay.hidden=true;trigger?.focus();}
+  trigger?.addEventListener('click',()=>{body.classList.add('oc-open');body.style.overflow='hidden';overlay.hidden=false;panel.removeAttribute('aria-hidden');trigger.setAttribute('aria-expanded','true');btnClose.focus();});
+  btnClose.addEventListener('click',closeOC);overlay.addEventListener('click',closeOC);
+</script>
+
+<!-- Relleno dinámico: nombre, email, avatar -->
+<script type="module">
+  import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+  const firebaseConfig2 = {
+    apiKey:"AIzaSyCo3llrVhgJroj1NcM4tGiKOJQVwRIx4FU",
+    authDomain:"login-form-6f237.firebaseapp.com",
+    projectId:"login-form-6f237",
+    storageBucket:"login-form-6f237.firebasestorage.app",
+    messagingSenderId:"711287319130",
+    appId:"1:711287319130:web:92eec814baf16a665d8663",
+    measurementId:"G-H6H8BCWJ35"
+  };
+
+  const app2  = getApps().length ? getApp() : initializeApp(firebaseConfig2);
+  const auth2 = getAuth(app2);
+  const db2   = getFirestore(app2);
+
+  function setTxt(id,val){ const el=document.getElementById(id); if(el) el.textContent = val ?? ''; }
+  function setAvatar(name,email,photoURL){
+    const img = document.getElementById('avImg');
+    const ini = document.getElementById('avInitial');
+    const initial = (name?.trim() || email?.split('@')[0] || 'U').charAt(0).toUpperCase();
+    if(photoURL){ img.src = photoURL; img.style.display='block'; ini.style.display='none'; }
+    else { ini.textContent = initial; img.style.display='none'; ini.style.display='grid'; }
+  }
+
+  // ADD: mostrar estado “Conectada/No conectada” para Google en la segunda fila
+  function setGoogleStatus(user){
+    const rowVal = document.querySelector('.rows .row:nth-child(2) .r-val'); // Fila "Cuenta de Google"
+    if(!rowVal) return;
+    const providers = user?.providerData?.map(p=>p.providerId) || [];
+    rowVal.textContent = providers.includes('google.com') ? 'Conectada' : 'No conectada';
+  }
+
+  onAuthStateChanged(auth2, async (user)=>{
+    const uid = user?.uid || localStorage.getItem('loggedInUserId');
+    if(!uid) return;
+
+    let name = user?.displayName || 'Usuario';
+    let email = user?.email || '';
+
+    // ADD: capturamos también la foto del perfil que venga del Auth (Google)
+    let photoURLFromAuth = user?.photoURL || ''; // ADD
+
+    try{
+      const snap = await getDoc(doc(db2,'users',uid));
+      if(snap.exists()){
+        const d = snap.data();
+        const full = `${d.firstName||''} ${d.lastName||''}`.trim();
+        name  = (d.displayName || d.fullName || full || name).trim();
+        email = d.email || email;
+
+        // ADD: si guardaste photoURL en Firestore, úsala como prioridad
+        var photoURLFromDB = d.photoURL || ''; // ADD
+      }
+    }catch{}
+
+    setTxt('sName', name || 'Usuario');
+    setTxt('sEmail', email || '');
+    setTxt('sEmailRow', email || '');
+
+    // Tu llamada original (no se elimina)
+    setAvatar(name, email, user?.photoURL || '');
+
+    // ADD: override opcional con prioridad: Firestore > Auth
+    const finalPhoto = (typeof photoURLFromDB === 'string' && photoURLFromDB) ? photoURLFromDB : photoURLFromAuth;
+    if(finalPhoto){
+      setAvatar(name, email, finalPhoto); // re-pintamos con la foto priorizada
+    }
+
+    // ADD: pintar estado de Google
+    setGoogleStatus(user);
+  });
+</script>
+
+
+<script type="module" src="usermenu.js"></script>
+</body>
+</html>
